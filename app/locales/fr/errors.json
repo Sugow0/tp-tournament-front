@@ -1,0 +1,22 @@
+{
+  "generic": "Une erreur est survenue. Veuillez réessayer.",
+  "notFound": "La ressource demandée est introuvable.",
+  "tournament": {
+    "notFound": "Ce tournoi est introuvable.",
+    "createFailed": "La création du tournoi a échoué.",
+    "invalidStatus": "Ce changement de statut est invalide pour ce tournoi."
+  },
+  "player": {
+    "notFound": "Ce joueur est introuvable.",
+    "addFailed": "L'ajout du joueur a échoué.",
+    "disqualifyFailed": "La disqualification a échoué.",
+    "penaltyFailed": "L'ajout de pénalités a échoué."
+  },
+  "duel": {
+    "notFound": "Ce duel est introuvable.",
+    "createFailed": "La création du duel a échoué.",
+    "alreadyEnded": "Ce duel est déjà terminé.",
+    "outcomeFailed": "La saisie du résultat a échoué.",
+    "endFailed": "La clôture du duel a échoué."
+  }
+}

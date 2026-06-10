@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "tournaments": "Tournois",
+    "brand": "Arène Fantastique"
+  },
+  "tournament": {
+    "title": "Tournois",
+    "new": "Nouveau tournoi",
+    "create": "Créer",
+    "cancel": "Annuler",
+    "namePlaceholder": "ex: Coupe d'Avalon",
+    "nameLabel": "Nom du tournoi",
+    "status": {
+      "OPEN": "Ouvert",
+      "IN_PROGRESS": "En cours",
+      "CLOSED": "Terminé"
+    },
+    "stepper": {
+      "open": "Ouvert",
+      "inProgress": "En cours",
+      "closed": "Terminé"
+    },
+    "advance": {
+      "start": "Commencer le tournoi",
+      "close": "Clôturer le tournoi"
+    },
+    "players": "joueurs",
+    "duels": "duels",
+    "empty": {
+      "title": "Aucun tournoi",
+      "description": "Créez votre premier tournoi pour commencer.",
+      "action": "Nouveau tournoi"
+    }
+  },
+  "player": {
+    "add": "Ajouter un joueur",
+    "namePlaceholder": "ex: Sir Galahad",
+    "nameLabel": "Nom du joueur",
+    "disqualify": "Disqualifier",
+    "disqualifyConfirm": "Confirmer la disqualification",
+    "disqualifyDescription": "Le joueur {{name}} sera disqualifié et son score final sera 0.",
+    "disqualified": "Disqualifié",
+    "addPenalty": "Ajouter des pénalités",
+    "penaltyLabel": "Points de pénalité",
+    "penaltyPlaceholder": "ex: 2",
+    "empty": {
+      "title": "Aucun joueur",
+      "description": "Ajoutez des joueurs pour commencer."
+    }
+  },
+  "duel": {
+    "new": "Nouveau duel",
+    "player1Label": "Joueur 1",
+    "player2Label": "Joueur 2",
+    "orderLabel": "Numéro du duel",
+    "pending": "En attente",
+    "setOutcome": "Saisir le résultat",
+    "endDuel": "Terminer le duel",
+    "duration": "Durée (secondes)",
+    "outcome": {
+      "PLAYER1_WIN": "Victoire joueur 1",
+      "PLAYER2_WIN": "Victoire joueur 2",
+      "DRAW": "Match nul"
+    },
+    "empty": {
+      "title": "Aucun duel",
+      "description": "Créez des duels pour commencer le tournoi."
+    }
+  },
+  "ranking": {
+    "title": "Classement",
+    "champion": "Champion",
+    "rank": "Rang",
+    "name": "Nom",
+    "score": "Score",
+    "status": "Statut",
+    "empty": {
+      "title": "Classement indisponible",
+      "description": "Le classement sera disponible une fois le tournoi commencé."
+    }
+  },
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
+  "save": "Enregistrer",
+  "loading": "Chargement…",
+  "retry": "Réessayer"
+}
