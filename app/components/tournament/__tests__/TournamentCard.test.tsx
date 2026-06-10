@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { renderWithRouter } from "~/test/utils/render-with-router";
 import { TournamentCard } from "~/components/tournament/TournamentCard";
@@ -17,12 +17,12 @@ const fakeTournament: Tournament = {
 
 describe("TournamentCard", () => {
   it("renders the tournament name", () => {
-    render(<TournamentCard tournament={fakeTournament} />);
+    renderWithRouter(<TournamentCard tournament={fakeTournament} />);
     expect(screen.getByText("Coupe d'Avalon")).toBeInTheDocument();
   });
 
   it("renders the status badge", () => {
-    render(<TournamentCard tournament={fakeTournament} />);
+    renderWithRouter(<TournamentCard tournament={fakeTournament} />);
     expect(screen.getByText("tournament.status.OPEN")).toBeInTheDocument();
   });
 
@@ -33,7 +33,7 @@ describe("TournamentCard", () => {
   });
 
   it("displays the creation date", () => {
-    render(<TournamentCard tournament={fakeTournament} />);
+    renderWithRouter(<TournamentCard tournament={fakeTournament} />);
     expect(screen.getByText(/2026/)).toBeInTheDocument();
   });
 });
