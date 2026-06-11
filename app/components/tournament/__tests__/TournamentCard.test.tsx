@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { renderWithRouter } from "~/test/utils/render-with-router";
 import { TournamentCard } from "~/components/tournament/TournamentCard";
+import { renderWithRouter } from "~/test/utils/render-with-router";
 import type { Tournament } from "~/types/tournament";
 
 vi.mock("react-i18next", () => ({

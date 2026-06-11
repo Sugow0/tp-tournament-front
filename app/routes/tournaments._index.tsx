@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { redirect, useActionData, useLoaderData } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
+import { redirect, useActionData, useLoaderData } from "react-router";
 import { AppShell } from "~/components/layout/AppShell";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { EmptyState } from "~/components/shared/EmptyState";
@@ -33,10 +33,7 @@ export default function TournamentsIndex() {
 
   return (
     <AppShell>
-      <PageHeader
-        title={t("tournament.title")}
-        actions={<CreateTournamentForm />}
-      />
+      <PageHeader title={t("tournament.title")} actions={<CreateTournamentForm />} />
       <div className="p-4 md:p-6">
         {actionData && "error" in actionData && (
           <p className="text-[var(--color-crimson)] text-sm mb-4">{t(actionData.error)}</p>

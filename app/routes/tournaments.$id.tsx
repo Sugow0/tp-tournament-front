@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { NavLink, Outlet, useLoaderData } from "react-router";
 import type { LoaderFunctionArgs } from "react-router";
+import { NavLink, Outlet, useLoaderData } from "react-router";
 import { AppShell } from "~/components/layout/AppShell";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { AdvanceTournamentButton } from "~/components/tournament/AdvanceTournamentButton";
@@ -33,10 +33,7 @@ export default function TournamentDetail() {
           { label: tournament.name, href: `/tournaments/${tournament.id}` },
         ]}
         actions={
-          <AdvanceTournamentButton
-            tournamentId={tournament.id}
-            status={tournament.status}
-          />
+          <AdvanceTournamentButton tournamentId={tournament.id} status={tournament.status} />
         }
       />
       <div className="px-4 md:px-6 pt-4">

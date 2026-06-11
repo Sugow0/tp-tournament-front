@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { renderWithRouter } from "~/test/utils/render-with-router";
 import { CreateTournamentForm } from "~/components/tournament/CreateTournamentForm";
+import { renderWithRouter } from "~/test/utils/render-with-router";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),

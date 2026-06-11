@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as http from "~/lib/http";
-import type { PlayerScore, RankingResponse } from "~/types/score";
 import {
   getPlayerScore,
   getTournamentChampion,
   getTournamentRanking,
 } from "~/services/scores.service";
+import type { PlayerScore, RankingResponse } from "~/types/score";
 
 vi.mock("~/lib/http", () => ({ apiFetch: vi.fn() }));
 const mockApiFetch = vi.mocked(http.apiFetch);

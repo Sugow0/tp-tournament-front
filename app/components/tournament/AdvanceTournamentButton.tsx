@@ -1,5 +1,5 @@
-import { useFetcher } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useFetcher } from "react-router";
 import { Button } from "~/components/ui/button";
 import type { TournamentStatus } from "~/types/tournament";
 
@@ -23,10 +23,7 @@ export function AdvanceTournamentButton({ tournamentId, status }: Props) {
   const label = status === "OPEN" ? t("tournament.advance.start") : t("tournament.advance.close");
 
   return (
-    <fetcher.Form
-      method="patch"
-      action={`/tournaments/${tournamentId}/status`}
-    >
+    <fetcher.Form method="patch" action={`/tournaments/${tournamentId}/status`}>
       <input type="hidden" name="status" value={next} />
       <Button
         type="submit"
