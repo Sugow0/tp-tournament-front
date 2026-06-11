@@ -7,9 +7,7 @@ describe("i18n", () => {
   });
 
   it("resolves a key from the common namespace", () => {
-    expect(i18n.t("errors.loginFailed")).toBe(
-      "La connexion a échoué. Vérifiez vos identifiants."
-    );
+    expect(i18n.t("errors.loginFailed")).toBe("La connexion a échoué. Vérifiez vos identifiants.");
   });
 
   it("resolves a key from the errors namespace", () => {

@@ -37,9 +37,7 @@ describe("SeasonRewardList", () => {
   });
 
   it("renders a single rank when rankMax equals rankMin", () => {
-    render(
-      <SeasonRewardList rewards={[{ ...baseReward, id: 3, rankMin: 5, rankMax: 5 }]} />
-    );
+    render(<SeasonRewardList rewards={[{ ...baseReward, id: 3, rankMin: 5, rankMax: 5 }]} />);
     expect(screen.getByText("#5")).toBeInTheDocument();
   });
 

@@ -45,14 +45,8 @@ describe("PageHeader", () => {
         ]}
       />
     );
-    expect(screen.getByRole("link", { name: "Tournois" })).toHaveAttribute(
-      "href",
-      "/tournaments"
-    );
-    expect(screen.getByRole("link", { name: "Détail" })).toHaveAttribute(
-      "href",
-      "/tournaments/1"
-    );
+    expect(screen.getByRole("link", { name: "Tournois" })).toHaveAttribute("href", "/tournaments");
+    expect(screen.getByRole("link", { name: "Détail" })).toHaveAttribute("href", "/tournaments/1");
   });
 
   it("does not render a breadcrumb when empty", () => {

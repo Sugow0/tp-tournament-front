@@ -48,9 +48,7 @@ describe("NewCombatForm", () => {
 
   it("renders a class select per champion with one option per class", () => {
     renderForm();
-    const select1 = document.querySelector(
-      'select[name="champion1ClassId"]'
-    ) as HTMLSelectElement;
+    const select1 = document.querySelector('select[name="champion1ClassId"]') as HTMLSelectElement;
     expect(select1).not.toBeNull();
     expect(select1.querySelectorAll("option")).toHaveLength(2);
     expect(screen.getAllByRole("option", { name: "Guerrier" })).toHaveLength(2);
@@ -59,9 +57,7 @@ describe("NewCombatForm", () => {
 
   it("defaults each class select to the first class", () => {
     renderForm();
-    const select1 = document.querySelector(
-      'select[name="champion1ClassId"]'
-    ) as HTMLSelectElement;
+    const select1 = document.querySelector('select[name="champion1ClassId"]') as HTMLSelectElement;
     expect(select1.value).toBe("1");
   });
 
@@ -72,9 +68,7 @@ describe("NewCombatForm", () => {
 
   it("renders without options when no classes are provided", () => {
     renderForm([]);
-    const select1 = document.querySelector(
-      'select[name="champion1ClassId"]'
-    ) as HTMLSelectElement;
+    const select1 = document.querySelector('select[name="champion1ClassId"]') as HTMLSelectElement;
     expect(select1.querySelectorAll("option")).toHaveLength(0);
   });
 });

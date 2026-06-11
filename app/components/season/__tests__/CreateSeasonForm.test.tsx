@@ -60,7 +60,10 @@ describe("CreateSeasonForm", () => {
     const user = userEvent.setup();
     renderWithRouter(<CreateSeasonForm />);
     await user.type(document.querySelector('input[name="name"]') as HTMLInputElement, "   ");
-    await user.type(document.getElementById("season-start") as HTMLInputElement, "2026-01-01T10:00");
+    await user.type(
+      document.getElementById("season-start") as HTMLInputElement,
+      "2026-01-01T10:00"
+    );
     await user.type(document.getElementById("season-end") as HTMLInputElement, "2026-03-31T10:00");
     expect(screen.getByRole("button", { name: "season.new" })).toBeDisabled();
   });
