@@ -25,7 +25,7 @@ export function ChampionPanel({ champion, className }: Props) {
             {className} · {t("combat.level")} {champion.level}
           </p>
         </div>
-        {champion.hasSubmitted && (
+        {champion.hasSubmittedAction && (
           <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-victory-muted)] px-2 py-0.5 font-ui text-[0.65rem] font-semibold uppercase tracking-wide text-[var(--color-victory)]">
             <Check size={11} aria-hidden="true" />
             {t("combat.validate")}

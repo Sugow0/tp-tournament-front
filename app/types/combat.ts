@@ -41,7 +41,7 @@ export interface CombatantState {
   level: number;
   maxHp: number;
   currentHp: number;
-  hasSubmitted: boolean;
+  hasSubmittedAction: boolean;
   effects: ActiveEffect[];
 }
 
