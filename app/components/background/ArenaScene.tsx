@@ -3,8 +3,9 @@ import { Float } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import type * as THREE from "three";
+import { dndPalette } from "~/theme/tokens";
 
-/* ─── Embers: slow orange particles drifting upward ─── */
+/* ─── Embers: slow torch sparks drifting upward ─── */
 const EMBER_COUNT = 320;
 
 function EmberParticles() {
@@ -45,7 +46,7 @@ function EmberParticles() {
         <bufferAttribute args={[positions, 3]} attach="attributes-position" />
       </bufferGeometry>
       <pointsMaterial
-        color="#e07820"
+        color={dndPalette.ember}
         size={0.09}
         transparent
         opacity={0.6}
@@ -56,7 +57,7 @@ function EmberParticles() {
   );
 }
 
-/* ─── Gold sparks: smaller, faster ─── */
+/* ─── Brass sparks: smaller, faster ─── */
 const SPARK_COUNT = 150;
 
 function GoldSparks() {
@@ -97,7 +98,7 @@ function GoldSparks() {
         <bufferAttribute args={[positions, 3]} attach="attributes-position" />
       </bufferGeometry>
       <pointsMaterial
-        color="#ffd700"
+        color={dndPalette.goldBright}
         size={0.045}
         transparent
         opacity={0.75}
@@ -112,35 +113,35 @@ function GoldSparks() {
 const ORBS = [
   {
     pos: [-24, 7, -14] as [number, number, number],
-    color: "#f0a832",
+    color: dndPalette.gold,
     size: 4.0,
     rx: 0.07,
     ry: 0.12,
   },
   {
     pos: [26, -5, -20] as [number, number, number],
-    color: "#4a6cf7",
+    color: dndPalette.crimson,
     size: 5.5,
     rx: 0.05,
     ry: 0.09,
   },
   {
     pos: [-15, -11, -16] as [number, number, number],
-    color: "#7c3aed",
+    color: dndPalette.magic,
     size: 3.2,
     rx: 0.09,
     ry: 0.06,
   },
   {
     pos: [18, 13, -18] as [number, number, number],
-    color: "#f0a832",
+    color: dndPalette.gold,
     size: 2.6,
     rx: 0.11,
     ry: 0.08,
   },
   {
     pos: [35, 2, -24] as [number, number, number],
-    color: "#4a6cf7",
+    color: dndPalette.crimson,
     size: 6.0,
     rx: 0.04,
     ry: 0.07,
@@ -187,11 +188,11 @@ export function ArenaScene() {
         pointerEvents: "none",
       }}
     >
-      <fog attach="fog" args={["#0d0a1e", 35, 90]} />
+      <fog attach="fog" args={[dndPalette.arenaBg, 35, 90]} />
       <ambientLight intensity={0.06} />
-      <pointLight position={[-18, -8, 6]} intensity={1.5} color="#c85a00" decay={2} />
-      <pointLight position={[18, 16, 8]} intensity={0.9} color="#3a5fd4" decay={2} />
-      <pointLight position={[0, 5, -2]} intensity={0.5} color="#5b21b6" decay={3} />
+      <pointLight position={[-18, -8, 6]} intensity={1.5} color={dndPalette.torch} decay={2} />
+      <pointLight position={[18, 16, 8]} intensity={0.9} color={dndPalette.gold} decay={2} />
+      <pointLight position={[0, 5, -2]} intensity={0.5} color={dndPalette.magic} decay={3} />
 
       <EmberParticles />
       <GoldSparks />
