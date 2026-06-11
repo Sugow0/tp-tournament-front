@@ -213,6 +213,34 @@
       "description": "Créez votre première saison pour commencer."
     }
   },
+  "combat": {
+    "title": "Combats",
+    "new": "Nouveau combat",
+    "champion1": "Champion 1",
+    "champion2": "Champion 2",
+    "name": "Nom",
+    "class": "Classe",
+    "level": "Niveau",
+    "turn": "Tour",
+    "validate": "Valider",
+    "forfeit": "Abandonner",
+    "win": "Victoire",
+    "draw": "Match nul",
+    "loss": "Défaite",
+    "points": "points",
+    "log": "Journal de combat",
+    "vs": "VS",
+    "categories": {
+      "ATTACK": "Attaque",
+      "DEFEND": "Défense",
+      "HEAL": "Soin",
+      "AURA": "Aura"
+    },
+    "empty": {
+      "title": "Aucun combat",
+      "description": "Lancez votre premier combat pour entrer dans l'arène."
+    }
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "save": "Enregistrer",
