@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { DuelCard } from "~/components/duel/DuelCard";
-import type { Duel } from "~/types/duel";
 import { renderWithRouter } from "~/test/utils/render-with-router";
+import type { Duel } from "~/types/duel";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -33,14 +33,22 @@ describe("DuelCard", () => {
 
   it("shows outcome label when outcome is set", () => {
     renderWithRouter(
-      <DuelCard duel={{ ...base, outcome: "PLAYER1_WIN" }} player1Name="Arthur" player2Name="Lancelot" />
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN" }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
     );
     expect(screen.getByText("duel.outcome.PLAYER1_WIN")).toBeInTheDocument();
   });
 
   it("shows duration in mm:ss when durationSeconds is set", () => {
     renderWithRouter(
-      <DuelCard duel={{ ...base, outcome: "PLAYER1_WIN", durationSeconds: 90 }} player1Name="Arthur" player2Name="Lancelot" />
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN", durationSeconds: 90 }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
     );
     expect(screen.getByText("1:30")).toBeInTheDocument();
   });
@@ -52,21 +60,33 @@ describe("DuelCard", () => {
 
   it("hides SetOutcomeForm when outcome is set", () => {
     renderWithRouter(
-      <DuelCard duel={{ ...base, outcome: "PLAYER1_WIN" }} player1Name="Arthur" player2Name="Lancelot" />
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN" }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
     );
     expect(document.querySelector('input[name="intent"][value="setOutcome"]')).toBeNull();
   });
 
   it("shows EndDuelForm when outcome is set but duel is not ended", () => {
     renderWithRouter(
-      <DuelCard duel={{ ...base, outcome: "PLAYER1_WIN" }} player1Name="Arthur" player2Name="Lancelot" />
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN" }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
     );
     expect(document.querySelector('input[name="intent"][value="endDuel"]')).not.toBeNull();
   });
 
   it("hides EndDuelForm when duel is ended", () => {
     renderWithRouter(
-      <DuelCard duel={{ ...base, outcome: "PLAYER1_WIN", durationSeconds: 90 }} player1Name="Arthur" player2Name="Lancelot" />
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN", durationSeconds: 90 }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
     );
     expect(document.querySelector('input[name="intent"][value="endDuel"]')).toBeNull();
   });

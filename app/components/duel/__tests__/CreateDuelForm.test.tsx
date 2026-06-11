@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { CreateDuelForm } from "~/components/duel/CreateDuelForm";
-import type { Player } from "~/types/player";
 import { renderWithRouter } from "~/test/utils/render-with-router";
+import type { Player } from "~/types/player";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
