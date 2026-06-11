@@ -50,12 +50,12 @@ describe("ObjectiveCard", () => {
 
   it("renders the target value", () => {
     renderWithRouter(<ObjectiveCard objective={objective} />);
-    expect(screen.getByText(/5/)).toBeInTheDocument();
+    expect(screen.getByText(/objective\.target.*5/)).toBeInTheDocument();
   });
 
   it("renders the xp reward", () => {
     renderWithRouter(<ObjectiveCard objective={objective} />);
-    expect(screen.getByText(/100/)).toBeInTheDocument();
+    expect(screen.getByText(/100.*objective\.xpReward/)).toBeInTheDocument();
   });
 
   it("renders a badge for the reset type", () => {

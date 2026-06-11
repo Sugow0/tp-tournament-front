@@ -125,6 +125,26 @@
       "description": "Créez votre premier skin pour personnaliser l'arène."
     }
   },
+  "objective": {
+    "title": "Objectifs",
+    "new": "Nouvel objectif",
+    "name": "Nom",
+    "description": "Description",
+    "type": "Type d'objectif",
+    "target": "Objectif",
+    "xpReward": "XP",
+    "reset": {
+      "label": "Réinitialisation",
+      "DAILY": "Quotidien",
+      "WEEKLY": "Hebdomadaire",
+      "SEASONAL": "Saisonnier"
+    },
+    "completed": "Complété",
+    "empty": {
+      "title": "Aucun objectif",
+      "description": "Créez votre premier objectif pour cette saison."
+    }
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "save": "Enregistrer",
