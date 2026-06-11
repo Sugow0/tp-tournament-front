@@ -175,6 +175,36 @@
       "description": "Aucune passe de combat n'est disponible pour cette saison."
     }
   },
+  "season": {
+    "title": "Saisons",
+    "new": "Nouvelle saison",
+    "name": "Nom",
+    "start": "Début",
+    "end": "Fin",
+    "status": {
+      "UPCOMING": "À venir",
+      "ACTIVE": "En cours",
+      "ENDED": "Terminée"
+    },
+    "advance": "Avancer la saison",
+    "rank": "Rang",
+    "label": "Libellé",
+    "rewards": {
+      "title": "Récompenses",
+      "create": "Créer une récompense",
+      "distribute": "Distribuer",
+      "type": "Type",
+      "data": "Donnée",
+      "empty": {
+        "title": "Aucune récompense",
+        "description": "Ajoutez des récompenses pour cette saison."
+      }
+    },
+    "empty": {
+      "title": "Aucune saison",
+      "description": "Créez votre première saison pour commencer."
+    }
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "save": "Enregistrer",
