@@ -10,7 +10,7 @@ export function LoadingSpinner({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
       <div
         role="status"
         aria-label="Chargement"
-        className={`${sizeClasses[size]} rounded-full border-[var(--color-parchment-border)] border-t-[var(--color-gold)] animate-spin`}
+        className={`${sizeClasses[size]} rounded-full border-[var(--color-arena-elevated)] border-t-[var(--color-gold)] animate-spin`}
       />
     </div>
   );

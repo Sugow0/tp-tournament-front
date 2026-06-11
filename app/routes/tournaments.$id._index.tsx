@@ -18,21 +18,21 @@ export default function TournamentOverview() {
   });
 
   return (
-    <Card className="border-[var(--color-parchment-border)] bg-[var(--color-parchment-dark)]">
+    <Card className="border-[var(--color-border)] bg-[var(--color-arena-mid)]">
       <CardHeader>
-        <h2 className="font-heading text-base font-semibold text-[var(--color-ink)]">
+        <h2 className="font-heading text-base font-semibold text-[var(--color-text-bright)]">
           {tournament.name}
         </h2>
       </CardHeader>
       <CardContent>
         <dl className="grid grid-cols-2 gap-3 text-sm font-ui">
           <div>
-            <dt className="text-[var(--color-brown-mid)]">{t("tournament.stepper.open")}</dt>
-            <dd className="text-[var(--color-ink)] font-medium">{createdAt}</dd>
+            <dt className="text-[var(--color-text-muted)]">{t("tournament.stepper.open")}</dt>
+            <dd className="text-[var(--color-text-bright)] font-medium">{createdAt}</dd>
           </div>
           <div>
-            <dt className="text-[var(--color-brown-mid)]">Statut</dt>
-            <dd className="text-[var(--color-ink)] font-medium">
+            <dt className="text-[var(--color-text-muted)]">Statut</dt>
+            <dd className="text-[var(--color-text-bright)] font-medium">
               {t(`tournament.status.${tournament.status}`)}
             </dd>
           </div>
