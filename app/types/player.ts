@@ -1,7 +1,9 @@
 export interface Player {
-  id: number;
   tournamentId: number;
-  name: string;
+  playerId: number;
+  playerName: string;
+  classId: number;
+  level: number;
   isDisqualified: boolean;
   penaltyPoints: number;
 }

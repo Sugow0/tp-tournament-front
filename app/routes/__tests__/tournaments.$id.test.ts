@@ -23,7 +23,7 @@ const fakeTournament: Tournament = {
 };
 
 function makePlayer(id: number): Player {
-  return { id, tournamentId: 7, name: `P${id}`, isDisqualified: false, penaltyPoints: 0 };
+  return { tournamentId: 7, playerId: id, playerName: `P${id}`, classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 };
 }
 
 function makeDuel(id: number): Duel {

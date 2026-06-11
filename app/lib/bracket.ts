@@ -20,8 +20,8 @@ export function generatePairings(players: Player[]): Pairing[] {
   for (let i = 0; i < players.length; i++) {
     for (let j = i + 1; j < players.length; j++) {
       pairings.push({
-        player1Id: players[i].id,
-        player2Id: players[j].id,
+        player1Id: players[i].playerId,
+        player2Id: players[j].playerId,
         duelOrder: duelOrder++,
       });
     }

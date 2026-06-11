@@ -25,8 +25,8 @@ export function CreateDuelForm({ players, nextOrder }: Props) {
           className="rounded bg-[var(--color-arena-surface)] border border-[var(--color-border)] text-[var(--color-text)] px-2 py-1 text-sm font-ui"
         >
           {players.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
+            <option key={p.playerId} value={p.playerId}>
+              {p.playerName}
             </option>
           ))}
         </select>
@@ -41,8 +41,8 @@ export function CreateDuelForm({ players, nextOrder }: Props) {
           className="rounded bg-[var(--color-arena-surface)] border border-[var(--color-border)] text-[var(--color-text)] px-2 py-1 text-sm font-ui"
         >
           {players.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
+            <option key={p.playerId} value={p.playerId}>
+              {p.playerName}
             </option>
           ))}
         </select>

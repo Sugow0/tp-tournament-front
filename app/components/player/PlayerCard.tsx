@@ -14,7 +14,7 @@ export function PlayerCard({ player, children }: Props) {
     <div className="cr-card relative rounded-xl bg-[var(--color-arena-mid)] border border-[var(--color-border)] p-4 flex flex-col gap-2">
       <div className="flex items-center justify-between gap-2">
         <span className="font-heading text-[var(--color-text-bright)] text-base font-semibold">
-          {player.name}
+          {player.playerName}
         </span>
         {player.penaltyPoints > 0 && (
           <span

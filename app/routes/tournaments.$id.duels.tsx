@@ -44,7 +44,7 @@ export default function TournamentDuels() {
   const { duels, players } = useLoaderData<typeof loader>();
   const { t } = useTranslation();
 
-  const playerMap = Object.fromEntries(players.map((p) => [p.id, p.name]));
+  const playerMap = Object.fromEntries(players.map((p) => [p.playerId, p.playerName]));
   const nextOrder = duels.length + 1;
 
   return (

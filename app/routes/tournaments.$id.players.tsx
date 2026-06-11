@@ -24,12 +24,12 @@ export async function action({ params, request }: ActionFunctionArgs) {
     }
     case "disqualify": {
       const playerId = Number(form.get("playerId"));
-      return disqualifyPlayer(playerId);
+      return disqualifyPlayer(tournamentId, playerId);
     }
     case "addPenalty": {
       const playerId = Number(form.get("playerId"));
       const penaltyPoints = Number(form.get("penaltyPoints"));
-      return addPenalty(playerId, { penaltyPoints });
+      return addPenalty(tournamentId, playerId, { penaltyPoints });
     }
     default:
       return null;
@@ -54,10 +54,10 @@ export default function TournamentPlayers() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {players.map((player) => (
-            <PlayerCard key={player.id} player={player}>
+            <PlayerCard key={player.playerId} player={player}>
               <div className="flex gap-2 mt-1">
-                <DisqualifyButton playerId={player.id} isDisqualified={player.isDisqualified} />
-                <PenaltyForm playerId={player.id} />
+                <DisqualifyButton playerId={player.playerId} isDisqualified={player.isDisqualified} />
+                <PenaltyForm playerId={player.playerId} />
               </div>
             </PlayerCard>
           ))}

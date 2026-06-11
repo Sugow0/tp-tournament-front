@@ -150,7 +150,7 @@ export default function DuelPlay() {
   const setupFetcher = useFetcher();
   const resultFetcher = useFetcher();
 
-  const playerMap = Object.fromEntries(players.map((p) => [p.id, p.name]));
+  const playerMap = Object.fromEntries(players.map((p) => [p.playerId, p.playerName]));
   const player1Name = playerMap[duel.player1Id] ?? `#${duel.player1Id}`;
   const player2Name = playerMap[duel.player2Id] ?? `#${duel.player2Id}`;
 

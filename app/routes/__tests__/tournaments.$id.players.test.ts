@@ -9,9 +9,11 @@ const mockDisqualify = vi.mocked(playerService.disqualifyPlayer);
 const mockPenalty = vi.mocked(playerService.addPenalty);
 
 const fakePlayer: Player = {
-  id: 1,
   tournamentId: 42,
-  name: "Arthur",
+  playerId: 1,
+  playerName: "Arthur",
+  classId: 1,
+  level: 1,
   isDisqualified: false,
   penaltyPoints: 0,
 };
@@ -61,7 +63,7 @@ describe("tournaments.$id.players action", () => {
     expect(mockAdd).toHaveBeenCalledWith(42, { name: "Lancelot" });
   });
 
-  it("calls disqualifyPlayer when intent is disqualify", async () => {
+  it("calls disqualifyPlayer with tournamentId and playerId when intent is disqualify", async () => {
     mockDisqualify.mockResolvedValue({ ...fakePlayer, isDisqualified: true });
     const { action } = await import("~/routes/tournaments.$id.players");
     await action({
@@ -69,10 +71,10 @@ describe("tournaments.$id.players action", () => {
       params: { id: "42" },
       context: {},
     });
-    expect(mockDisqualify).toHaveBeenCalledWith(1);
+    expect(mockDisqualify).toHaveBeenCalledWith(42, 1);
   });
 
-  it("calls addPenalty when intent is addPenalty", async () => {
+  it("calls addPenalty with tournamentId, playerId and points when intent is addPenalty", async () => {
     mockPenalty.mockResolvedValue({ ...fakePlayer, penaltyPoints: 3 });
     const { action } = await import("~/routes/tournaments.$id.players");
     await action({
@@ -80,6 +82,6 @@ describe("tournaments.$id.players action", () => {
       params: { id: "42" },
       context: {},
     });
-    expect(mockPenalty).toHaveBeenCalledWith(1, { penaltyPoints: 3 });
+    expect(mockPenalty).toHaveBeenCalledWith(42, 1, { penaltyPoints: 3 });
   });
 });

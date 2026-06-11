@@ -8,9 +8,11 @@ vi.mock("react-i18next", () => ({
 }));
 
 const base: Player = {
-  id: 1,
   tournamentId: 1,
-  name: "Arthur Pendragon",
+  playerId: 1,
+  playerName: "Arthur Pendragon",
+  classId: 1,
+  level: 1,
   isDisqualified: false,
   penaltyPoints: 0,
 };

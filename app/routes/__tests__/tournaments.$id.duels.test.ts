@@ -25,7 +25,7 @@ const fakeDuel: Duel = {
 };
 
 const fakePlayers: Player[] = [
-  { id: 1, tournamentId: 42, name: "Arthur", isDisqualified: false, penaltyPoints: 0 },
+  { tournamentId: 42, playerId: 1, playerName: "Arthur", classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 },
 ];
 
 function makePostRequest(fields: Record<string, string>) {
