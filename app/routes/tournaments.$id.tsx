@@ -18,6 +18,7 @@ const TABS = [
   { to: "players", label: "nav.players", end: false },
   { to: "duels", label: "nav.duels", end: false },
   { to: "ranking", label: "nav.ranking", end: false },
+  { to: "cosmetics", label: "nav.cosmetics", end: false },
 ];
 
 export default function TournamentDetail() {

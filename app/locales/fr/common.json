@@ -5,7 +5,8 @@
     "overview": "Vue d'ensemble",
     "players": "Joueurs",
     "duels": "Duels",
-    "ranking": "Classement"
+    "ranking": "Classement",
+    "cosmetics": "Cosmétiques"
   },
   "tournament": {
     "title": "Tournois",
@@ -81,6 +82,29 @@
     "empty": {
       "title": "Classement indisponible",
       "description": "Le classement sera disponible une fois le tournoi commencé."
+    }
+  },
+  "skin": {
+    "title": "Cosmétiques",
+    "create": "Créer un skin",
+    "deactivate": "Désactiver",
+    "name": "Nom",
+    "assetKey": "Clé d'asset",
+    "category": "Catégorie",
+    "premium": "Premium",
+    "equip": "Équiper",
+    "categories": {
+      "PLAYER": "Joueur",
+      "BACKGROUND": "Arrière-plan"
+    },
+    "background": {
+      "title": "Arrière-plan de l'arène",
+      "choose": "Choisir un arrière-plan",
+      "current": "Arrière-plan actuel"
+    },
+    "empty": {
+      "title": "Aucun cosmétique",
+      "description": "Créez votre premier skin pour personnaliser l'arène."
     }
   },
   "confirm": "Confirmer",
