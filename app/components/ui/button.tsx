@@ -5,24 +5,29 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "~/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-ui font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-arena-bg)] disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        // Primary — solid heraldic crimson with a faint blood glow
+        default:
+          "bg-primary text-primary-foreground shadow-[0_0_12px_rgba(177,18,31,0.25)] hover:bg-primary/90 hover:shadow-[0_0_18px_rgba(177,18,31,0.45)]",
+        // Danger — blood maroon
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/85",
+        // Secondary action — clearly a button on the dark theme (brass border + leather surface)
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-[var(--color-border-strong)] bg-[var(--color-arena-surface)] text-[var(--color-text)] hover:bg-[var(--color-arena-elevated)] hover:border-[var(--color-gold)] hover:text-[var(--color-text-bright)]",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "border border-[var(--color-border)] bg-[var(--color-arena-elevated)] text-[var(--color-text)] hover:bg-[var(--color-arena-hover)]",
+        ghost:
+          "text-[var(--color-text-muted)] hover:bg-[var(--color-arena-elevated)] hover:text-[var(--color-text-bright)]",
+        link: "text-[var(--color-gold)] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-9 rounded-sm px-3",
+        lg: "h-11 rounded-sm px-8",
         icon: "h-10 w-10",
       },
     },
