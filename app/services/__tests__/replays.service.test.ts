@@ -61,7 +61,12 @@ describe("replays.service", () => {
 
   it("addReplayEvent calls POST /api/duels/:duelId/replay/events with payload", async () => {
     mockApiFetch.mockResolvedValue(fakeEvent);
-    const payload = { eventType: "ATTACK", occurredAtMs: 1500, actorPlayerId: 3, targetPlayerId: 4 };
+    const payload = {
+      eventType: "ATTACK",
+      occurredAtMs: 1500,
+      actorPlayerId: 3,
+      targetPlayerId: 4,
+    };
     const result = await addReplayEvent(7, payload);
     expect(mockApiFetch).toHaveBeenCalledWith("/api/duels/7/replay/events", {
       method: "POST",
