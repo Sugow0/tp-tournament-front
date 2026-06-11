@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { LoaderFunctionArgs } from "react-router";
 import { NavLink, Outlet, useLoaderData } from "react-router";
-import { AppShell } from "~/components/layout/AppShell";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { AdvanceTournamentButton } from "~/components/tournament/AdvanceTournamentButton";
 import { TournamentStatusStepper } from "~/components/tournament/TournamentStatusStepper";
@@ -26,7 +25,7 @@ export default function TournamentDetail() {
   const { t } = useTranslation();
 
   return (
-    <AppShell>
+    <>
       <PageHeader
         title={tournament.name}
         breadcrumb={[
@@ -62,6 +61,6 @@ export default function TournamentDetail() {
       <div className="p-4 md:p-6">
         <Outlet context={{ tournament }} />
       </div>
-    </AppShell>
+    </>
   );
 }

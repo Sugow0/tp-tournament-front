@@ -6,7 +6,9 @@
     "players": "Joueurs",
     "duels": "Duels",
     "ranking": "Classement",
-    "cosmetics": "Cosmétiques"
+    "cosmetics": "Cosmétiques",
+    "seasons": "Saisons",
+    "shop": "Boutique"
   },
   "tournament": {
     "title": "Tournois",

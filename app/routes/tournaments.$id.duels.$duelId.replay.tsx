@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { LoaderFunctionArgs } from "react-router";
 import { useLoaderData } from "react-router";
-import { AppShell } from "~/components/layout/AppShell";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { CosmeticSnapshotCard } from "~/components/replay/CosmeticSnapshotCard";
 import { ReplayTimeline } from "~/components/replay/ReplayTimeline";
@@ -22,7 +21,7 @@ export default function DuelReplay() {
   const { t } = useTranslation();
 
   return (
-    <AppShell>
+    <>
       <PageHeader title={t("replay.title")} />
 
       <div className="py-8 md:py-12 flex flex-col gap-6">
@@ -34,6 +33,6 @@ export default function DuelReplay() {
           <EmptyState title={t("replay.empty.title")} description={t("replay.empty.description")} />
         )}
       </div>
-    </AppShell>
+    </>
   );
 }
