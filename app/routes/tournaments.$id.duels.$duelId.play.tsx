@@ -194,8 +194,9 @@ export default function DuelPlay() {
         </setupFetcher.Form>
       ) : (
         <div className="flex flex-col gap-6">
-          {/* CombatArena renders ActionPanel, whose plain Form posts intent=submit
-              to this route; combatId is read from the ?combatId search param. */}
+          {/* CombatArena renders CombatBoard, whose plain Form posts intent=submit
+              to this route; combatId is supplied as a hidden input (combat.id),
+              matching the ?combatId search param the loader/action read. */}
           <CombatArena
             combat={combat}
             class1Skills={class1Skills}
