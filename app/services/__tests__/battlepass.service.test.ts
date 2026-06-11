@@ -8,11 +8,7 @@ import {
   getPlayerProgress,
   listTiers,
 } from "~/services/battlepass.service";
-import type {
-  Battlepass,
-  BattlepassTier,
-  PlayerBattlepassProgress,
-} from "~/types/battlepass";
+import type { Battlepass, BattlepassTier, PlayerBattlepassProgress } from "~/types/battlepass";
 
 vi.mock("~/lib/http", () => ({ apiFetch: vi.fn() }));
 const mockApiFetch = vi.mocked(http.apiFetch);

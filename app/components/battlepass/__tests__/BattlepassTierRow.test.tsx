@@ -29,7 +29,8 @@ const premiumTier: BattlepassTier = {
 describe("BattlepassTierRow", () => {
   it("renders the tier number", () => {
     renderWithRouter(<BattlepassTierRow tier={freeTier} />);
-    expect(screen.getByText(/4/)).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText(/battlepass.tier 4/)).toBeInTheDocument();
   });
 
   it("renders the xp required", () => {

@@ -20,8 +20,7 @@ const fakeProgress: PlayerBattlepassProgress = {
 describe("PlayerProgressPanel", () => {
   it("shows the current tier out of total tiers", () => {
     renderWithRouter(<PlayerProgressPanel progress={fakeProgress} totalTiers={50} />);
-    expect(screen.getByText(/3/)).toBeInTheDocument();
-    expect(screen.getByText(/50/)).toBeInTheDocument();
+    expect(screen.getByText(/3 \/ 50/)).toBeInTheDocument();
   });
 
   it("shows the current xp", () => {
