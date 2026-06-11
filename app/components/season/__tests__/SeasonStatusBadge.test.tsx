@@ -7,11 +7,12 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("SeasonStatusBadge", () => {
-  it.each(["UPCOMING", "ACTIVE", "ENDED"] as const)(
-    "renders translation key for status %s",
-    (status) => {
-      render(<SeasonStatusBadge status={status} />);
-      expect(screen.getByText(`season.status.${status}`)).toBeInTheDocument();
-    }
-  );
+  it.each([
+    "UPCOMING",
+    "ACTIVE",
+    "ENDED",
+  ] as const)("renders translation key for status %s", (status) => {
+    render(<SeasonStatusBadge status={status} />);
+    expect(screen.getByText(`season.status.${status}`)).toBeInTheDocument();
+  });
 });

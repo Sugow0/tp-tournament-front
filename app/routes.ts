@@ -4,6 +4,8 @@ export default [
   index("routes/home.tsx"),
   route("tournaments", "routes/tournaments._index.tsx"),
   route("skins", "routes/skins._index.tsx"),
+  route("seasons", "routes/seasons._index.tsx"),
+  route("seasons/:id", "routes/seasons.$id.tsx"),
   route("tournaments/:id", "routes/tournaments.$id.tsx", [
     index("routes/tournaments.$id._index.tsx"),
     route("players", "routes/tournaments.$id.players.tsx"),
