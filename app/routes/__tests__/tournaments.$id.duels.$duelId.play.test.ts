@@ -32,8 +32,24 @@ const fakeDuel: Duel = {
 };
 
 const fakePlayers: Player[] = [
-  { tournamentId: 42, playerId: 1, playerName: "Arthur", classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 },
-  { tournamentId: 42, playerId: 2, playerName: "Mordred", classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 },
+  {
+    tournamentId: 42,
+    playerId: 1,
+    playerName: "Arthur",
+    classId: 1,
+    level: 1,
+    isDisqualified: false,
+    penaltyPoints: 0,
+  },
+  {
+    tournamentId: 42,
+    playerId: 2,
+    playerName: "Mordred",
+    classId: 1,
+    level: 1,
+    isDisqualified: false,
+    penaltyPoints: 0,
+  },
 ];
 
 const fakeClasses: ChampionClass[] = [

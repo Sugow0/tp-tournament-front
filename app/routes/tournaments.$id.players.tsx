@@ -56,7 +56,10 @@ export default function TournamentPlayers() {
           {players.map((player) => (
             <PlayerCard key={player.playerId} player={player}>
               <div className="flex gap-2 mt-1">
-                <DisqualifyButton playerId={player.playerId} isDisqualified={player.isDisqualified} />
+                <DisqualifyButton
+                  playerId={player.playerId}
+                  isDisqualified={player.isDisqualified}
+                />
                 <PenaltyForm playerId={player.playerId} />
               </div>
             </PlayerCard>

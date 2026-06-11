@@ -3,7 +3,15 @@ import { generatePairings } from "~/lib/bracket";
 import type { Player } from "~/types/player";
 
 function makePlayer(id: number): Player {
-  return { tournamentId: 1, playerId: id, playerName: `P${id}`, classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 };
+  return {
+    tournamentId: 1,
+    playerId: id,
+    playerName: `P${id}`,
+    classId: 1,
+    level: 1,
+    isDisqualified: false,
+    penaltyPoints: 0,
+  };
 }
 
 describe("generatePairings", () => {

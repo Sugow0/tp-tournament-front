@@ -9,8 +9,24 @@ vi.mock("react-i18next", () => ({
 }));
 
 const players: Player[] = [
-  { tournamentId: 1, playerId: 1, playerName: "Arthur", classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 },
-  { tournamentId: 1, playerId: 2, playerName: "Lancelot", classId: 1, level: 1, isDisqualified: false, penaltyPoints: 0 },
+  {
+    tournamentId: 1,
+    playerId: 1,
+    playerName: "Arthur",
+    classId: 1,
+    level: 1,
+    isDisqualified: false,
+    penaltyPoints: 0,
+  },
+  {
+    tournamentId: 1,
+    playerId: 2,
+    playerName: "Lancelot",
+    classId: 1,
+    level: 1,
+    isDisqualified: false,
+    penaltyPoints: 0,
+  },
 ];
 
 describe("CreateDuelForm", () => {
