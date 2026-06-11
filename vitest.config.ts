@@ -8,6 +8,10 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./app/test/setup.ts"],
     globals: true,
+    // The heavy framer-motion/three route modules cost several seconds to
+    // transform on first import; under parallel workers that can blow the
+    // default 5s per-test timeout on otherwise-trivial loader tests.
+    testTimeout: 20000,
     exclude: ["**/node_modules/**", "e2e/**"],
     coverage: {
       provider: "v8",
