@@ -10,6 +10,8 @@ export function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const isTournaments = location.pathname.startsWith("/tournaments");
+  const isSeasons = location.pathname.startsWith("/seasons");
+  const isSkins = location.pathname.startsWith("/skins");
 
   const { scrollY } = useScroll();
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.97]);
@@ -55,6 +57,8 @@ export function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex ml-auto items-center gap-1">
           <NavItem to="/tournaments" active={isTournaments} label={t("nav.tournaments")} />
+          <NavItem to="/seasons" active={isSeasons} label={t("nav.seasons")} />
+          <NavItem to="/skins" active={isSkins} label={t("nav.shop")} />
         </div>
 
         {/* Mobile hamburger */}
@@ -88,6 +92,18 @@ export function Navbar() {
             to="/tournaments"
             active={isTournaments}
             label={t("nav.tournaments")}
+            onClick={() => setOpen(false)}
+          />
+          <NavItem
+            to="/seasons"
+            active={isSeasons}
+            label={t("nav.seasons")}
+            onClick={() => setOpen(false)}
+          />
+          <NavItem
+            to="/skins"
+            active={isSkins}
+            label={t("nav.shop")}
             onClick={() => setOpen(false)}
           />
         </div>

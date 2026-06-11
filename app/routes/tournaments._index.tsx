@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import type { ActionFunctionArgs } from "react-router";
 import { redirect, useActionData, useLoaderData } from "react-router";
-import { AppShell } from "~/components/layout/AppShell";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { EmptyState } from "~/components/shared/EmptyState";
 import { CreateTournamentForm } from "~/components/tournament/CreateTournamentForm";
@@ -56,7 +55,7 @@ export default function TournamentsIndex() {
   const { t } = useTranslation();
 
   return (
-    <AppShell>
+    <>
       <PageHeader title={t("tournament.title")} actions={<CreateTournamentForm />} />
 
       <div className="py-8 md:py-12">
@@ -95,6 +94,6 @@ export default function TournamentsIndex() {
           </motion.div>
         )}
       </div>
-    </AppShell>
+    </>
   );
 }
