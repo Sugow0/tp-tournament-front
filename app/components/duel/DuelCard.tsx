@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import type { Duel } from "~/types/duel";
 import { EndDuelForm } from "./EndDuelForm";
 import { SetOutcomeForm } from "./SetOutcomeForm";
@@ -53,6 +54,13 @@ export function DuelCard({ duel, player1Name, player2Name }: Props) {
           <EndDuelForm duelId={duel.id} />
         </div>
       )}
+
+      <Link
+        to={`/tournaments/${duel.tournamentId}/duels/${duel.id}/replay`}
+        className="font-ui text-xs text-[var(--color-gold)] hover:underline self-center"
+      >
+        {t("replay.view")}
+      </Link>
     </div>
   );
 }

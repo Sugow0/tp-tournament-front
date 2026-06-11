@@ -71,6 +71,24 @@
       "description": "Créez des duels pour commencer le tournoi."
     }
   },
+  "replay": {
+    "title": "Replay",
+    "recording": "Enregistrement en cours",
+    "complete": "Terminé",
+    "view": "Voir le replay",
+    "event": "Événement",
+    "time": "Temps",
+    "snapshot": {
+      "title": "Apparences",
+      "player1": "Joueur 1",
+      "player2": "Joueur 2",
+      "background": "Décor"
+    },
+    "empty": {
+      "title": "Aucun événement",
+      "description": "Ce duel n'a pas encore de replay enregistré."
+    }
+  },
   "ranking": {
     "title": "Classement",
     "champion": "Champion",
