@@ -90,4 +90,27 @@ describe("DuelCard", () => {
     );
     expect(document.querySelector('input[name="intent"][value="endDuel"]')).toBeNull();
   });
+
+  it("shows a play-combat link to the play route when outcome is null", () => {
+    renderWithRouter(<DuelCard duel={base} player1Name="Arthur" player2Name="Lancelot" />);
+    const link = document.querySelector('a[href="/tournaments/1/duels/1/play"]');
+    expect(link).not.toBeNull();
+    expect(link).toHaveTextContent("duel.play");
+  });
+
+  it("hides the play-combat link once an outcome is set", () => {
+    renderWithRouter(
+      <DuelCard
+        duel={{ ...base, outcome: "PLAYER1_WIN" }}
+        player1Name="Arthur"
+        player2Name="Lancelot"
+      />
+    );
+    expect(document.querySelector('a[href="/tournaments/1/duels/1/play"]')).toBeNull();
+  });
+
+  it("keeps the replay link", () => {
+    renderWithRouter(<DuelCard duel={base} player1Name="Arthur" player2Name="Lancelot" />);
+    expect(document.querySelector('a[href="/tournaments/1/duels/1/replay"]')).not.toBeNull();
+  });
 });
