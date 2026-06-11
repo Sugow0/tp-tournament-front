@@ -10,6 +10,8 @@
     "seasons": "Saisons",
     "shop": "Boutique",
     "combat": "Combat",
+    "friends": "Amis",
+    "challenges": "Défis",
     "login": "Connexion",
     "account": "Mon compte",
     "logout": "Déconnexion"
@@ -248,6 +250,41 @@
     "empty": {
       "title": "Aucun combat",
       "description": "Lancez votre premier combat pour entrer dans l'arène."
+    }
+  },
+  "friends": {
+    "title": "Amis",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "challenge": "Défier",
+    "current": "Mes amis",
+    "discover": "Ajouter un ami",
+    "loginPrompt": "Connectez-vous pour gérer vos amis et lancer des défis.",
+    "error": "Impossible de charger vos amis.",
+    "empty": {
+      "title": "Aucun ami",
+      "description": "Ajoutez des amis pour pouvoir les défier dans l'arène."
+    },
+    "discoverEmpty": {
+      "title": "Personne à ajouter",
+      "description": "Tous les combattants disponibles font déjà partie de vos amis."
+    }
+  },
+  "challenges": {
+    "title": "Défis",
+    "vs": "VS",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "loginPrompt": "Connectez-vous pour voir vos défis.",
+    "error": "Impossible de charger vos défis.",
+    "status": {
+      "PENDING": "En attente",
+      "ACCEPTED": "Accepté",
+      "DECLINED": "Refusé"
+    },
+    "empty": {
+      "title": "Aucun défi",
+      "description": "Défiez un ami pour lancer un combat."
     }
   },
   "confirm": "Confirmer",

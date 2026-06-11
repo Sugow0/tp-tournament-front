@@ -6,6 +6,8 @@ export default [
   route("register", "routes/register.tsx"),
   route("tournaments", "routes/tournaments._index.tsx"),
   route("skins", "routes/skins._index.tsx"),
+  route("friends", "routes/friends.tsx"),
+  route("challenges", "routes/challenges.tsx"),
   route("combats", "routes/combats._index.tsx"),
   route("combats/:id", "routes/combats.$id.tsx"),
   route("objectives/:seasonId", "routes/objectives.$seasonId.tsx"),
