@@ -19,5 +19,6 @@ export default [
     route("ranking", "routes/tournaments.$id.ranking.tsx"),
     route("cosmetics", "routes/tournaments.$id.cosmetics.tsx"),
     route("duels/:duelId/replay", "routes/tournaments.$id.duels.$duelId.replay.tsx"),
+    route("duels/:duelId/play", "routes/tournaments.$id.duels.$duelId.play.tsx"),
   ]),
 ] satisfies RouteConfig;

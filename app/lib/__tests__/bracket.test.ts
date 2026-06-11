@@ -18,12 +18,7 @@ describe("generatePairings", () => {
   });
 
   it("returns 6 unique unordered pairs for 4 players", () => {
-    const pairings = generatePairings([
-      makePlayer(1),
-      makePlayer(2),
-      makePlayer(3),
-      makePlayer(4),
-    ]);
+    const pairings = generatePairings([makePlayer(1), makePlayer(2), makePlayer(3), makePlayer(4)]);
     expect(pairings).toHaveLength(6);
     expect(pairings.map((p) => p.duelOrder)).toEqual([1, 2, 3, 4, 5, 6]);
     expect(pairings.map((p) => [p.player1Id, p.player2Id])).toEqual([

@@ -9,19 +9,17 @@ vi.mock("react-i18next", () => ({
 
 describe("AdvanceTournamentButton", () => {
   it("shows start button when status is OPEN", () => {
-    renderWithRouter(<AdvanceTournamentButton tournamentId={1} status="OPEN" />);
+    renderWithRouter(<AdvanceTournamentButton status="OPEN" />);
     expect(screen.getByRole("button")).toHaveTextContent("tournament.advance.start");
   });
 
   it("shows close button when status is IN_PROGRESS", () => {
-    renderWithRouter(<AdvanceTournamentButton tournamentId={1} status="IN_PROGRESS" />);
+    renderWithRouter(<AdvanceTournamentButton status="IN_PROGRESS" />);
     expect(screen.getByRole("button")).toHaveTextContent("tournament.advance.close");
   });
 
   it("renders nothing when status is CLOSED", () => {
-    const { container } = renderWithRouter(
-      <AdvanceTournamentButton tournamentId={1} status="CLOSED" />
-    );
+    const { container } = renderWithRouter(<AdvanceTournamentButton status="CLOSED" />);
     expect(container.querySelector("button")).toBeNull();
   });
 });

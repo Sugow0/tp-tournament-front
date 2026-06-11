@@ -55,12 +55,22 @@ export function DuelCard({ duel, player1Name, player2Name }: Props) {
         </div>
       )}
 
-      <Link
-        to={`/tournaments/${duel.tournamentId}/duels/${duel.id}/replay`}
-        className="font-ui text-xs text-[var(--color-gold)] hover:underline self-center"
-      >
-        {t("replay.view")}
-      </Link>
+      <div className="flex items-center justify-center gap-4">
+        {!duel.outcome && (
+          <Link
+            to={`/tournaments/${duel.tournamentId}/duels/${duel.id}/play`}
+            className="font-ui text-xs text-[var(--color-battle)] hover:underline"
+          >
+            {t("duel.play")} ⚔️
+          </Link>
+        )}
+        <Link
+          to={`/tournaments/${duel.tournamentId}/duels/${duel.id}/replay`}
+          className="font-ui text-xs text-[var(--color-gold)] hover:underline"
+        >
+          {t("replay.view")}
+        </Link>
+      </div>
     </div>
   );
 }

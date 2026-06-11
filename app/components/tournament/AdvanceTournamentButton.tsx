@@ -9,11 +9,10 @@ const NEXT_STATUS: Partial<Record<TournamentStatus, TournamentStatus>> = {
 };
 
 interface Props {
-  tournamentId: number;
   status: TournamentStatus;
 }
 
-export function AdvanceTournamentButton({ tournamentId, status }: Props) {
+export function AdvanceTournamentButton({ status }: Props) {
   const { t } = useTranslation();
   const fetcher = useFetcher();
   const next = NEXT_STATUS[status];
@@ -23,7 +22,8 @@ export function AdvanceTournamentButton({ tournamentId, status }: Props) {
   const label = status === "OPEN" ? t("tournament.advance.start") : t("tournament.advance.close");
 
   return (
-    <fetcher.Form method="patch" action={`/tournaments/${tournamentId}/status`}>
+    <fetcher.Form method="post">
+      <input type="hidden" name="intent" value="advanceStatus" />
       <input type="hidden" name="status" value={next} />
       <Button
         type="submit"

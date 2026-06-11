@@ -1,15 +1,45 @@
 import { useTranslation } from "react-i18next";
-import type { LoaderFunctionArgs } from "react-router";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { NavLink, Outlet, useLoaderData } from "react-router";
 import { PageHeader } from "~/components/layout/PageHeader";
 import { AdvanceTournamentButton } from "~/components/tournament/AdvanceTournamentButton";
 import { TournamentStatusStepper } from "~/components/tournament/TournamentStatusStepper";
+import { generatePairings } from "~/lib/bracket";
 import { cn } from "~/lib/utils";
-import { getTournament } from "~/services/tournaments.service";
+import { createDuel, listDuels } from "~/services/duels.service";
+import { listPlayers } from "~/services/players.service";
+import { getTournament, updateTournamentStatus } from "~/services/tournaments.service";
+import type { TournamentStatus } from "~/types/tournament";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const tournament = await getTournament(Number(params.id));
   return { tournament };
+}
+
+async function generateBracket(tournamentId: number) {
+  const [players, duels] = await Promise.all([listPlayers(tournamentId), listDuels(tournamentId)]);
+  if (duels.length > 0) return;
+  const pairings = generatePairings(players);
+  for (const pairing of pairings) {
+    await createDuel(tournamentId, pairing);
+  }
+}
+
+export async function action({ params, request }: ActionFunctionArgs) {
+  const tournamentId = Number(params.id);
+  const form = await request.formData();
+  const intent = form.get("intent") as string;
+
+  if (intent === "advanceStatus") {
+    const status = form.get("status") as TournamentStatus;
+    const tournament = await updateTournamentStatus(tournamentId, { status });
+    if (status === "IN_PROGRESS") {
+      await generateBracket(tournamentId);
+    }
+    return tournament;
+  }
+
+  return null;
 }
 
 const TABS = [
@@ -32,9 +62,7 @@ export default function TournamentDetail() {
           { label: t("tournament.title"), href: "/tournaments" },
           { label: tournament.name, href: `/tournaments/${tournament.id}` },
         ]}
-        actions={
-          <AdvanceTournamentButton tournamentId={tournament.id} status={tournament.status} />
-        }
+        actions={<AdvanceTournamentButton status={tournament.status} />}
       />
       <div className="px-4 md:px-6 pt-4">
         <TournamentStatusStepper status={tournament.status} />
