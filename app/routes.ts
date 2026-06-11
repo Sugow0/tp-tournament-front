@@ -6,5 +6,6 @@ export default [
   route("tournaments/:id", "routes/tournaments.$id.tsx", [
     index("routes/tournaments.$id._index.tsx"),
     route("players", "routes/tournaments.$id.players.tsx"),
+    route("duels", "routes/tournaments.$id.duels.tsx"),
   ]),
 ] satisfies RouteConfig;
