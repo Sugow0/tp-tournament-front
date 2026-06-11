@@ -38,7 +38,7 @@ export function CreateTournamentForm() {
       <Button
         type="submit"
         disabled={name.trim() === ""}
-        className="bg-[var(--color-royal)] hover:bg-[var(--color-royal)]/80 disabled:opacity-40 disabled:cursor-not-allowed text-white font-ui font-bold tracking-wide shadow-[0_0_12px_rgba(74,108,247,0.3)] hover:shadow-[0_0_18px_rgba(74,108,247,0.5)] transition-all rounded-xl h-10"
+        className="bg-[var(--color-royal)] hover:bg-[var(--color-royal)]/80 disabled:opacity-40 disabled:cursor-not-allowed text-white font-ui font-bold tracking-wide shadow-[0_0_12px_rgba(177,18,31,0.3)] hover:shadow-[0_0_18px_rgba(177,18,31,0.5)] transition-all rounded-xl h-10"
       >
         {t("tournament.create")}
       </Button>

@@ -9,7 +9,7 @@ const configs: Record<TournamentStatus, { dot: string; badge: string }> = {
       "bg-[var(--color-victory)]/10 text-[var(--color-victory)] border border-[var(--color-victory)]/35",
   },
   IN_PROGRESS: {
-    dot: "bg-[var(--color-royal)] shadow-[0_0_6px_rgba(74,108,247,0.8)] animate-pulse",
+    dot: "bg-[var(--color-royal)] shadow-[0_0_6px_rgba(177,18,31,0.8)] animate-pulse",
     badge:
       "bg-[var(--color-royal)]/10 text-[var(--color-royal)] border border-[var(--color-royal)]/35",
   },

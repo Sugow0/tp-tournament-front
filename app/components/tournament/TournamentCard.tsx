@@ -31,7 +31,7 @@ export function TournamentCard({ tournament }: Props) {
 
   const shadowX = useTransform(mouseX, [-0.5, 0.5], [-10, 10]);
   const shadowY = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
-  const cardShadow = useMotionTemplate`${shadowX}px ${shadowY}px 40px rgba(240,168,50,0.1), 0 20px 60px rgba(0,0,0,0.7)`;
+  const cardShadow = useMotionTemplate`${shadowX}px ${shadowY}px 40px rgba(201,164,75,0.1), 0 20px 60px rgba(0,0,0,0.7)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();

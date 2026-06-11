@@ -42,7 +42,7 @@ export function TournamentStatusStepper({ status }: Props) {
                 className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all duration-300",
                   isCurrent &&
-                    "border-[var(--color-royal)] bg-[var(--color-royal)] text-white shadow-[0_0_14px_rgba(74,108,247,0.7)] scale-110",
+                    "border-[var(--color-royal)] bg-[var(--color-royal)] text-white shadow-[0_0_14px_rgba(177,18,31,0.7)] scale-110",
                   isDone &&
                     "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-arena-bg)]",
                   !isCurrent &&
@@ -73,7 +73,7 @@ export function TournamentStatusStepper({ status }: Props) {
                 className="flex-1 min-w-[20px] h-[2px] mb-6 mx-1 rounded-full transition-all duration-500"
                 style={{
                   background: isDone
-                    ? "linear-gradient(90deg, var(--color-gold), rgba(240,168,50,0.4))"
+                    ? "linear-gradient(90deg, var(--color-gold), rgba(201,164,75,0.4))"
                     : "var(--color-border)",
                 }}
               />

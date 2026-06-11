@@ -16,8 +16,8 @@ export function Navbar() {
   const borderOpacity = useTransform(scrollY, [0, 80], [0.06, 0.28]);
   const blurAmount = useTransform(scrollY, [0, 80], [0, 18]);
 
-  const navBg = useMotionTemplate`rgba(26, 16, 53, ${bgOpacity})`;
-  const navBorder = useMotionTemplate`rgba(240, 168, 50, ${borderOpacity})`;
+  const navBg = useMotionTemplate`rgba(24, 18, 16, ${bgOpacity})`;
+  const navBorder = useMotionTemplate`rgba(201, 164, 75, ${borderOpacity})`;
   const navBlur = useMotionTemplate`blur(${blurAmount}px)`;
 
   return (
@@ -41,7 +41,7 @@ export function Navbar() {
           >
             <Crown
               size={26}
-              className="text-[var(--color-gold)] drop-shadow-[0_0_10px_rgba(240,168,50,0.6)]"
+              className="text-[var(--color-gold)] drop-shadow-[0_0_10px_rgba(201,164,75,0.6)]"
             />
           </motion.div>
           <span
@@ -81,7 +81,7 @@ export function Navbar() {
         animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="md:hidden overflow-hidden"
-        style={{ borderTop: open ? "1px solid rgba(240,168,50,0.15)" : "none" }}
+        style={{ borderTop: open ? "1px solid rgba(201,164,75,0.15)" : "none" }}
       >
         <div className="px-4 sm:px-8 py-3 flex flex-col gap-1 bg-[var(--color-arena-mid)]/95">
           <NavItem
@@ -116,7 +116,7 @@ function NavItem({ to, active, label, onClick }: NavItemProps) {
       {active && (
         <motion.span
           layoutId="nav-pill"
-          className="absolute inset-0 rounded-full bg-[var(--color-royal)] shadow-[0_0_18px_rgba(74,108,247,0.6)]"
+          className="absolute inset-0 rounded-full bg-[var(--color-royal)] shadow-[0_0_18px_rgba(177,18,31,0.6)]"
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
         />
       )}

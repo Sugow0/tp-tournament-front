@@ -30,7 +30,7 @@ export function PageHeader({ title, subtitle, actions, breadcrumb }: PageHeaderP
           left: "5%",
           width: "45%",
           height: "220%",
-          background: "radial-gradient(ellipse, rgba(74,108,247,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(177,18,31,0.07) 0%, transparent 70%)",
           filter: "blur(50px)",
         }}
       />
@@ -42,7 +42,7 @@ export function PageHeader({ title, subtitle, actions, breadcrumb }: PageHeaderP
           right: "0%",
           width: "35%",
           height: "220%",
-          background: "radial-gradient(ellipse, rgba(240,168,50,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(201,164,75,0.05) 0%, transparent 70%)",
           filter: "blur(50px)",
         }}
       />

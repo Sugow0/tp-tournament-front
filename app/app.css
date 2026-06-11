@@ -1,50 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  /* ─── Typography ─── */
+  /* ─── Typography — heroic serif titling ─── */
   --font-display: "Cinzel Decorative", serif;
   --font-heading: "Cinzel", serif;
   --font-body: "Nunito", sans-serif;
   --font-ui: "Nunito", sans-serif;
   --font-sans: "Nunito", sans-serif;
 
-  /* ─── Clash Royale Palette ─── */
+  /* ─── Dungeons & Dragons Palette ─── */
+  /* (token names are kept stable; the values mirror app/theme/tokens.ts) */
 
-  /* Arena backgrounds */
-  --color-arena-bg: #0d0a1e;
-  --color-arena-mid: #1a1035;
-  --color-arena-surface: #231844;
-  --color-arena-elevated: #2d2157;
-  --color-arena-hover: #38297a;
+  /* Tome / leather backgrounds — warm near-black */
+  --color-arena-bg: #0e0b09;
+  --color-arena-mid: #181210;
+  --color-arena-surface: #221a15;
+  --color-arena-elevated: #2c211a;
+  --color-arena-hover: #392c22;
 
-  /* Gold — coins, borders, crowns */
-  --color-gold: #f0a832;
-  --color-gold-bright: #ffd700;
-  --color-gold-dark: #c9872a;
-  --color-gold-muted: rgba(240, 168, 50, 0.12);
-  --color-gold-glow: rgba(240, 168, 50, 0.35);
+  /* Antique brass / gold — borders, ornaments, treasure */
+  --color-gold: #c9a44b;
+  --color-gold-bright: #ecc972;
+  --color-gold-dark: #997a2f;
+  --color-gold-muted: rgba(201, 164, 75, 0.12);
+  --color-gold-glow: rgba(201, 164, 75, 0.35);
 
-  /* Royal blue — primary actions */
-  --color-royal: #4a6cf7;
-  --color-royal-dark: #2a4fd4;
-  --color-royal-muted: rgba(74, 108, 247, 0.15);
+  /* Heraldic D&D red — primary actions (semantic name kept as "royal") */
+  --color-royal: #b1121f;
+  --color-royal-dark: #870d18;
+  --color-royal-muted: rgba(177, 18, 31, 0.15);
 
-  /* Battle colors */
-  --color-battle: #e63946;
-  --color-battle-muted: rgba(230, 57, 70, 0.15);
-  --color-victory: #22c55e;
-  --color-victory-muted: rgba(34, 197, 94, 0.15);
-  --color-magic: #a855f7;
-  --color-draw: #f59e0b;
+  /* Battle colors — blood maroon danger, heraldic emerald, arcane amethyst */
+  --color-battle: #8c1c13;
+  --color-battle-muted: rgba(140, 28, 19, 0.18);
+  --color-victory: #3f9d6b;
+  --color-victory-muted: rgba(63, 157, 107, 0.15);
+  --color-magic: #7c4dbf;
+  --color-draw: #d8932b;
 
-  /* Text */
-  --color-text: #f5e6c8;
-  --color-text-muted: #9b8ec4;
-  --color-text-bright: #ffffff;
+  /* Text — parchment on leather */
+  --color-text: #e8dcc0;
+  --color-text-muted: #a08a68;
+  --color-text-bright: #f7eed8;
 
-  /* Borders */
-  --color-border: rgba(240, 168, 50, 0.22);
-  --color-border-strong: rgba(240, 168, 50, 0.5);
+  /* Borders — brass */
+  --color-border: rgba(201, 164, 75, 0.22);
+  --color-border-strong: rgba(201, 164, 75, 0.5);
 
   /* ─── shadcn semantic tokens ─── */
   --background: var(--color-arena-bg);
@@ -54,7 +55,7 @@
   --popover: var(--color-arena-surface);
   --popover-foreground: var(--color-text);
   --primary: var(--color-royal);
-  --primary-foreground: #ffffff;
+  --primary-foreground: #fbf3e2;
   --secondary: var(--color-arena-surface);
   --secondary-foreground: var(--color-text);
   --muted: var(--color-arena-elevated);
@@ -62,7 +63,7 @@
   --accent: var(--color-gold);
   --accent-foreground: var(--color-arena-bg);
   --destructive: var(--color-battle);
-  --destructive-foreground: #ffffff;
+  --destructive-foreground: #fbf3e2;
   --border: var(--color-border);
   --input: var(--color-arena-surface);
   --ring: var(--color-gold);
@@ -133,7 +134,7 @@ textarea,
   50% {
     box-shadow:
       0 0 18px var(--color-gold-glow),
-      0 0 32px rgba(240, 168, 50, 0.18);
+      0 0 32px rgba(201, 164, 75, 0.18);
   }
 }
 
@@ -141,7 +142,7 @@ textarea,
   animation: glow-gold 2.4s ease-in-out infinite;
 }
 
-/* ─── CR card — gradient border via mask ─── */
+/* ─── Parchment card — gradient border via mask ─── */
 .cr-card {
   position: relative;
   overflow: hidden;
@@ -155,9 +156,9 @@ textarea,
   padding: 1.5px;
   background: linear-gradient(
     160deg,
-    rgba(240, 168, 50, 0.7) 0%,
+    rgba(201, 164, 75, 0.7) 0%,
     transparent 45%,
-    rgba(74, 108, 247, 0.4) 100%
+    rgba(177, 18, 31, 0.4) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -179,7 +180,7 @@ textarea,
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240, 168, 50, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 164, 75, 0.45), transparent);
 }
 
 /* ─── Display font utility ─── */
@@ -201,6 +202,6 @@ textarea,
 /* ─── Arcane text glow ─── */
 .text-arcane {
   text-shadow:
-    0 0 20px rgba(240, 168, 50, 0.5),
-    0 0 60px rgba(240, 168, 50, 0.2);
+    0 0 20px rgba(201, 164, 75, 0.5),
+    0 0 60px rgba(201, 164, 75, 0.2);
 }
