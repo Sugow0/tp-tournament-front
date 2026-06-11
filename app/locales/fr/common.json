@@ -127,6 +127,19 @@
       "description": "Créez votre premier skin pour personnaliser l'arène."
     }
   },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Valider",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "noAccount": "Vous n'avez pas de compte ?"
+  },
+  "errors": {
+    "loginFailed": "La connexion a échoué. Vérifiez vos identifiants.",
+    "registerFailed": "L'inscription a échoué. Veuillez réessayer."
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "save": "Enregistrer",

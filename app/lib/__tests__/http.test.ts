@@ -1,5 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import * as auth from "~/lib/auth";
 import { ApiError, apiFetch } from "~/lib/http";
+
+vi.mock("~/lib/auth", () => ({ getAccessToken: vi.fn() }));
+const mockGetAccessToken = vi.mocked(auth.getAccessToken);
 
 const mockFetch = vi.fn();
 vi.stubGlobal("fetch", mockFetch);
@@ -13,7 +17,11 @@ function makeResponse(status: number, body: unknown) {
 }
 
 describe("apiFetch", () => {
-  beforeEach(() => mockFetch.mockReset());
+  beforeEach(() => {
+    mockFetch.mockReset();
+    mockGetAccessToken.mockReset();
+    mockGetAccessToken.mockReturnValue(null);
+  });
 
   it("returns parsed JSON on 2xx", async () => {
     mockFetch.mockResolvedValue(makeResponse(200, { id: 1 }));
@@ -53,5 +61,25 @@ describe("apiFetch", () => {
     const err = await apiFetch("/test").catch((e) => e);
     expect(err).toBeInstanceOf(ApiError);
     expect(err.body).toEqual({});
+  });
+
+  it("adds Authorization header when an access token exists", async () => {
+    mockGetAccessToken.mockReturnValue("access-123");
+    mockFetch.mockResolvedValue(makeResponse(200, {}));
+    await apiFetch("/test");
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        headers: expect.objectContaining({ Authorization: "Bearer access-123" }),
+      })
+    );
+  });
+
+  it("omits the Authorization header when no token exists", async () => {
+    mockGetAccessToken.mockReturnValue(null);
+    mockFetch.mockResolvedValue(makeResponse(200, {}));
+    await apiFetch("/test");
+    const headers = mockFetch.mock.calls[0][1].headers as Record<string, string>;
+    expect(headers).not.toHaveProperty("Authorization");
   });
 });
