@@ -14,6 +14,8 @@ export function Navbar() {
   const isCombat = location.pathname.startsWith("/combats");
   const isSeasons = location.pathname.startsWith("/seasons");
   const isSkins = location.pathname.startsWith("/skins");
+  const isFriends = location.pathname.startsWith("/friends");
+  const isChallenges = location.pathname.startsWith("/challenges");
 
   const { scrollY } = useScroll();
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.97]);
@@ -62,6 +64,8 @@ export function Navbar() {
           <NavItem to="/combats" active={isCombat} label={t("nav.combat")} />
           <NavItem to="/seasons" active={isSeasons} label={t("nav.seasons")} />
           <NavItem to="/skins" active={isSkins} label={t("nav.shop")} />
+          <NavItem to="/friends" active={isFriends} label={t("nav.friends")} />
+          <NavItem to="/challenges" active={isChallenges} label={t("nav.challenges")} />
           <div className="ml-3 pl-3 border-l border-[var(--color-border)]">
             <NavbarSession />
           </div>
@@ -116,6 +120,18 @@ export function Navbar() {
             to="/skins"
             active={isSkins}
             label={t("nav.shop")}
+            onClick={() => setOpen(false)}
+          />
+          <NavItem
+            to="/friends"
+            active={isFriends}
+            label={t("nav.friends")}
+            onClick={() => setOpen(false)}
+          />
+          <NavItem
+            to="/challenges"
+            active={isChallenges}
+            label={t("nav.challenges")}
             onClick={() => setOpen(false)}
           />
           <div className="mt-2 pt-2 border-t border-[var(--color-border)]">
