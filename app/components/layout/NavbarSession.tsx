@@ -1,5 +1,5 @@
 import { LogOut } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";
@@ -16,12 +16,25 @@ interface NavbarSessionProps {
 
 export function NavbarSession({ mobile = false, onAction }: NavbarSessionProps) {
   const { t } = useTranslation();
-  const { mounted, loggedIn } = useSession();
+  const { ready, isAuthenticated } = useSession();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close the menu when clicking outside of it (nice-to-have).
+  useEffect(() => {
+    if (!open) return;
+    function onPointerDown(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, [open]);
 
   // SSR / first paint: render the logged-out affordance to avoid hydration mismatch.
-  if (!mounted || !loggedIn) {
+  if (!ready || !isAuthenticated) {
     return (
       <Link
         to="/login"
@@ -46,7 +59,7 @@ export function NavbarSession({ mobile = false, onAction }: NavbarSessionProps) 
   }
 
   return (
-    <div className={cn("relative", mobile && "w-full")}>
+    <div ref={containerRef} className={cn("relative", mobile && "w-full")}>
       <button
         type="button"
         aria-label={t("auth.account")}

@@ -8,6 +8,13 @@ let refreshToken: string | null = null;
 
 const hasWindow = () => typeof window !== "undefined";
 
+/** Notify in-app listeners (e.g. useSession) that the auth state changed. */
+function emitAuthChange(): void {
+  if (hasWindow()) {
+    window.dispatchEvent(new Event("tournament:auth-change"));
+  }
+}
+
 export function setSession(auth: AuthResponse): void {
   accessToken = auth.accessToken;
   refreshToken = auth.refreshToken;
@@ -15,6 +22,7 @@ export function setSession(auth: AuthResponse): void {
     window.localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
     window.localStorage.setItem(REFRESH_TOKEN_KEY, auth.refreshToken);
   }
+  emitAuthChange();
 }
 
 export function getAccessToken(): string | null {
@@ -40,6 +48,7 @@ export function clearSession(): void {
     window.localStorage.removeItem(ACCESS_TOKEN_KEY);
     window.localStorage.removeItem(REFRESH_TOKEN_KEY);
   }
+  emitAuthChange();
 }
 
 export function isAuthenticated(): boolean {
