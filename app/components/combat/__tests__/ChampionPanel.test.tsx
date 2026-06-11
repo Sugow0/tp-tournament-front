@@ -31,9 +31,7 @@ describe("ChampionPanel", () => {
   });
 
   it("shows the submitted indicator when hasSubmitted is true", () => {
-    render(
-      <ChampionPanel champion={{ ...champion, hasSubmitted: true }} className="Guerrier" />
-    );
+    render(<ChampionPanel champion={{ ...champion, hasSubmitted: true }} className="Guerrier" />);
     expect(screen.getByText("combat.validate")).toBeInTheDocument();
   });
 });
