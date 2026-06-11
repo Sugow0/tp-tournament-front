@@ -1,4 +1,5 @@
 import { screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { CreateSkinForm } from "~/components/skin/CreateSkinForm";
 import { renderWithRouter } from "~/test/utils/render-with-router";
@@ -39,5 +40,19 @@ describe("CreateSkinForm", () => {
   it("renders a submit button", () => {
     renderWithRouter(<CreateSkinForm />);
     expect(screen.getByRole("button", { name: "skin.create" })).toBeInTheDocument();
+  });
+
+  it("disables submit until a non-empty name is typed and updates the name field", async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<CreateSkinForm />);
+
+    const submit = screen.getByRole("button", { name: "skin.create" });
+    expect(submit).toBeDisabled();
+
+    const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
+    await user.type(nameInput, "Chevalier");
+
+    expect(nameInput.value).toBe("Chevalier");
+    expect(submit).toBeEnabled();
   });
 });

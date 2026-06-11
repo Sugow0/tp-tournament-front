@@ -67,4 +67,26 @@ describe("NavbarSession", () => {
     fireEvent.click(screen.getByRole("button", { name: "auth.logout" }));
     expect(mocks.clearSession).toHaveBeenCalledTimes(1);
   });
+
+  it("closes the menu when clicking outside of it", () => {
+    loggedIn();
+    renderWithRouter(<NavbarSession />);
+    fireEvent.click(screen.getByRole("button", { name: "auth.account" }));
+    expect(screen.getByRole("button", { name: "auth.logout" })).toBeInTheDocument();
+
+    // A mousedown outside the menu container should close it (lines 28-29).
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("button", { name: "auth.logout" })).toBeNull();
+  });
+
+  it("keeps the menu open when clicking inside of it", () => {
+    loggedIn();
+    renderWithRouter(<NavbarSession />);
+    const accountButton = screen.getByRole("button", { name: "auth.account" });
+    fireEvent.click(accountButton);
+
+    // A mousedown inside the container should NOT close the menu.
+    fireEvent.mouseDown(accountButton);
+    expect(screen.getByRole("button", { name: "auth.logout" })).toBeInTheDocument();
+  });
 });

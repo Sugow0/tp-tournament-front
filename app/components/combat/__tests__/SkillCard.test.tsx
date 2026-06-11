@@ -40,4 +40,25 @@ describe("SkillCard", () => {
     fireEvent.click(screen.getByRole("button"));
     expect(onSelect).toHaveBeenCalledWith(fakeSkill);
   });
+
+  it("does not throw when clicked without an onSelect handler", () => {
+    render(<SkillCard skill={fakeSkill} />);
+    expect(() => fireEvent.click(screen.getByRole("button"))).not.toThrow();
+  });
+
+  it("reflects the selected state via aria-pressed", () => {
+    render(<SkillCard skill={fakeSkill} selected />);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("renders the duration when the skill lasts more than one turn", () => {
+    render(<SkillCard skill={{ ...fakeSkill, duration: 3 }} />);
+    expect(screen.getByText(/3/)).toBeInTheDocument();
+    expect(screen.getByText(/combat.turn/)).toBeInTheDocument();
+  });
+
+  it("does not render the duration when the skill has no duration", () => {
+    render(<SkillCard skill={{ ...fakeSkill, duration: 0 }} />);
+    expect(screen.queryByText("combat.turn")).not.toBeInTheDocument();
+  });
 });

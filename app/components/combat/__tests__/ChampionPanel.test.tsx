@@ -36,4 +36,23 @@ describe("ChampionPanel", () => {
     );
     expect(screen.getByText("combat.validate")).toBeInTheDocument();
   });
+
+  it("does not show the submitted indicator when hasSubmittedAction is false", () => {
+    render(<ChampionPanel champion={champion} className="Guerrier" />);
+    expect(screen.queryByText("combat.validate")).not.toBeInTheDocument();
+  });
+
+  it("renders an effect badge for each active effect", () => {
+    render(
+      <ChampionPanel
+        champion={{
+          ...champion,
+          effects: [{ effectType: "DEFENSE_UP", magnitude: 3, remainingTurns: 4 }],
+        }}
+        className="Guerrier"
+      />
+    );
+    expect(screen.getByText(/DEFENSE_UP/)).toBeInTheDocument();
+    expect(screen.getByText(/\(4\)/)).toBeInTheDocument();
+  });
 });

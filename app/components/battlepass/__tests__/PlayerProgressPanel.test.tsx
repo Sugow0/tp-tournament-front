@@ -27,4 +27,22 @@ describe("PlayerProgressPanel", () => {
     renderWithRouter(<PlayerProgressPanel progress={fakeProgress} totalTiers={50} />);
     expect(screen.getByText(/250/)).toBeInTheDocument();
   });
+
+  it("renders zero progress when there are no tiers", () => {
+    renderWithRouter(<PlayerProgressPanel progress={fakeProgress} totalTiers={0} />);
+    const bar = document.querySelector('[role="progressbar"]') as HTMLElement;
+    expect(bar).not.toBeNull();
+    const indicator = bar.firstElementChild as HTMLElement;
+    expect(indicator).toHaveStyle({ transform: "translateX(-100%)" });
+  });
+
+  it("clamps progress to 100 when the current tier exceeds the total", () => {
+    renderWithRouter(
+      <PlayerProgressPanel progress={{ ...fakeProgress, currentTier: 80 }} totalTiers={50} />
+    );
+    const bar = document.querySelector('[role="progressbar"]') as HTMLElement;
+    expect(bar).not.toBeNull();
+    const indicator = bar.firstElementChild as HTMLElement;
+    expect(indicator).toHaveStyle({ transform: "translateX(-0%)" });
+  });
 });

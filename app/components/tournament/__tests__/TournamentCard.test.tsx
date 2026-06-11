@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { TournamentCard } from "~/components/tournament/TournamentCard";
 import { renderWithRouter } from "~/test/utils/render-with-router";
@@ -36,4 +36,26 @@ describe("TournamentCard", () => {
     renderWithRouter(<TournamentCard tournament={fakeTournament} />);
     expect(screen.getByText(/2026/)).toBeInTheDocument();
   });
+
+  it("handles mouse move and leave on the card without crashing", () => {
+    renderWithRouter(<TournamentCard tournament={fakeTournament} />);
+    const card = screen.getByRole("link").parentElement as HTMLElement;
+    expect(card).not.toBeNull();
+
+    card.getBoundingClientRect = () =>
+      ({ left: 0, top: 0, width: 200, height: 100 }) as DOMRect;
+
+    fireEvent.mouseMove(card, { clientX: 50, clientY: 25 });
+    fireEvent.mouseLeave(card);
+
+    expect(screen.getByText("Coupe d'Avalon")).toBeInTheDocument();
+  });
+
+  it.each(["OPEN", "IN_PROGRESS", "CLOSED"] as const)(
+    "renders the %s status badge",
+    (status) => {
+      renderWithRouter(<TournamentCard tournament={{ ...fakeTournament, status }} />);
+      expect(screen.getByText(`tournament.status.${status}`)).toBeInTheDocument();
+    }
+  );
 });

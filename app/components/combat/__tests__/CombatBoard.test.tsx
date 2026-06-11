@@ -194,4 +194,76 @@ describe("CombatBoard when combat is over", () => {
     expect(container).toBeEmptyDOMElement();
     expect(screen.queryByTestId("combat-hand")).not.toBeInTheDocument();
   });
+
+  it("renders nothing when the turn has exceeded the cap", () => {
+    const { container } = renderBoard(makeCombat({ turn: 11 }));
+    expect(container).toBeEmptyDOMElement();
+  });
+});
+
+describe("CombatBoard active effects", () => {
+  it("renders the active champion's effect badges in the HP bar", () => {
+    renderBoard(
+      makeCombat({
+        champion1: makeCombatant({
+          slot: 1,
+          classId: 1,
+          name: "Arthur",
+          effects: [{ effectType: "ATTACK_UP", magnitude: 5, remainingTurns: 2 }],
+        }),
+      })
+    );
+    expect(screen.getByText(/ATTACK_UP/)).toBeInTheDocument();
+    expect(screen.getByText(/\(2\)/)).toBeInTheDocument();
+  });
+});
+
+describe("CombatBoard center card", () => {
+  it("clears the selection when the center card is clicked", () => {
+    renderBoard(makeCombat());
+    fireEvent.click(screen.getByRole("button", { name: /Frappe lourde/ }));
+
+    const center = screen.getByTestId("center-card");
+    fireEvent.click(within(center).getByRole("button"));
+
+    expect(screen.queryByTestId("center-card")).not.toBeInTheDocument();
+    const hand = screen.getByTestId("combat-hand");
+    expect(within(hand).getByText("Frappe lourde")).toBeInTheDocument();
+  });
+
+  it("clears the selection on form submit", () => {
+    renderBoard(makeCombat());
+    fireEvent.click(screen.getByRole("button", { name: /Frappe lourde/ }));
+    expect(screen.getByTestId("center-card")).toBeInTheDocument();
+
+    const form = document.querySelector('[data-testid="play-card-form"]') as HTMLFormElement;
+    fireEvent.submit(form);
+
+    expect(screen.queryByTestId("center-card")).not.toBeInTheDocument();
+  });
+});
+
+describe("CombatBoard hot-seat hand-off overlay", () => {
+  function makeSlot2Combat() {
+    return makeCombat({
+      champion1: makeCombatant({
+        slot: 1,
+        classId: 1,
+        name: "Arthur",
+        hasSubmittedAction: true,
+      }),
+    });
+  }
+
+  it("shows the hand-off overlay when it becomes slot 2's turn", () => {
+    renderBoard(makeSlot2Combat());
+    expect(screen.getByText("combat.handoff")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "combat.handoffReady" })).toBeInTheDocument();
+  });
+
+  it("dismisses the overlay once the ready button is clicked", () => {
+    renderBoard(makeSlot2Combat());
+    fireEvent.click(screen.getByRole("button", { name: "combat.handoffReady" }));
+    expect(screen.queryByText("combat.handoff")).not.toBeInTheDocument();
+  });
 });

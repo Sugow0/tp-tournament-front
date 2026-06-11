@@ -17,7 +17,15 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "html", "lcov"],
       include: ["app/components/**", "app/services/**", "app/lib/**"],
-      exclude: ["app/components/ui/**"],
+      // ui/** are vendored shadcn primitives; background/** is a decorative
+      // three.js WebGL scene that jsdom cannot render (no GL context).
+      exclude: ["app/components/ui/**", "app/components/background/**"],
+      thresholds: {
+        statements: 95,
+        branches: 95,
+        functions: 95,
+        lines: 95,
+      },
     },
   },
 });

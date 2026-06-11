@@ -1,4 +1,5 @@
 import { screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { CreateObjectiveForm } from "~/components/objective/CreateObjectiveForm";
 import { renderWithRouter } from "~/test/utils/render-with-router";
@@ -41,5 +42,19 @@ describe("CreateObjectiveForm", () => {
   it("renders a submit button", () => {
     renderWithRouter(<CreateObjectiveForm />);
     expect(screen.getByRole("button", { name: "objective.new" })).toBeInTheDocument();
+  });
+
+  it("disables submit until a non-empty name is typed and updates the name field", async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<CreateObjectiveForm />);
+
+    const submit = screen.getByRole("button", { name: "objective.new" });
+    expect(submit).toBeDisabled();
+
+    const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
+    await user.type(nameInput, "Gagner 5 duels");
+
+    expect(nameInput.value).toBe("Gagner 5 duels");
+    expect(submit).toBeEnabled();
   });
 });

@@ -46,6 +46,19 @@ describe("auth token store", () => {
     expect(localStorage.getItem("accessToken")).toBeNull();
   });
 
+  it("hydrates the access token from localStorage when the cache is cold", () => {
+    clearSession();
+    localStorage.setItem("accessToken", "persisted-access");
+    expect(getAccessToken()).toBe("persisted-access");
+    expect(isAuthenticated()).toBe(true);
+  });
+
+  it("hydrates the refresh token from localStorage when the cache is cold", () => {
+    clearSession();
+    localStorage.setItem("refreshToken", "persisted-refresh");
+    expect(getRefreshToken()).toBe("persisted-refresh");
+  });
+
   describe("auth-change event", () => {
     afterEach(() => vi.restoreAllMocks());
 
