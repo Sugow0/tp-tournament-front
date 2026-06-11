@@ -14,9 +14,7 @@ export function Navbar() {
           className="flex items-center gap-2 text-[var(--color-crimson)] hover:text-[var(--color-crimson-dark)] transition-colors"
         >
           <Sword size={20} />
-          <span className="font-heading font-bold text-lg tracking-wide">
-            Arène Fantastique
-          </span>
+          <span className="font-heading font-bold text-lg tracking-wide">Arène Fantastique</span>
         </Link>
         <div className="ml-auto flex items-center gap-1">
           <Link

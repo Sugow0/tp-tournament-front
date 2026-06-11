@@ -1,13 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as http from "~/lib/http";
+import { createDuel, endDuel, getDuel, listDuels, setDuelOutcome } from "~/services/duels.service";
 import type { Duel } from "~/types/duel";
-import {
-  createDuel,
-  endDuel,
-  getDuel,
-  listDuels,
-  setDuelOutcome,
-} from "~/services/duels.service";
 
 vi.mock("~/lib/http", () => ({ apiFetch: vi.fn() }));
 const mockApiFetch = vi.mocked(http.apiFetch);

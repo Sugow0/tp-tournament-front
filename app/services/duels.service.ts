@@ -1,10 +1,5 @@
 import { apiFetch } from "~/lib/http";
-import type {
-  CreateDuelPayload,
-  Duel,
-  EndDuelPayload,
-  SetDuelOutcomePayload,
-} from "~/types/duel";
+import type { CreateDuelPayload, Duel, EndDuelPayload, SetDuelOutcomePayload } from "~/types/duel";
 
 export function listDuels(tournamentId: number): Promise<Duel[]> {
   return apiFetch(`/api/tournaments/${tournamentId}/duels`);

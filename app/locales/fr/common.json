@@ -1,7 +1,11 @@
 {
   "nav": {
     "tournaments": "Tournois",
-    "brand": "Arène Fantastique"
+    "brand": "Arène Fantastique",
+    "overview": "Vue d'ensemble",
+    "players": "Joueurs",
+    "duels": "Duels",
+    "ranking": "Classement"
   },
   "tournament": {
     "title": "Tournois",

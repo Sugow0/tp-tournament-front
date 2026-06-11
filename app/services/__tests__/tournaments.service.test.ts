@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as http from "~/lib/http";
-import type { Tournament } from "~/types/tournament";
 import {
   createTournament,
   getTournament,
   listTournaments,
   updateTournamentStatus,
 } from "~/services/tournaments.service";
+import type { Tournament } from "~/types/tournament";
 
 vi.mock("~/lib/http", () => ({ apiFetch: vi.fn() }));
 const mockApiFetch = vi.mocked(http.apiFetch);
