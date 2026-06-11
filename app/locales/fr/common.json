@@ -68,6 +68,9 @@
     "setOutcome": "Saisir le résultat",
     "endDuel": "Terminer le duel",
     "duration": "Durée (secondes)",
+    "play": "Jouer le combat",
+    "setup": "Choisissez une classe et un niveau pour chaque joueur.",
+    "validateResult": "Valider le résultat du duel",
     "outcome": {
       "PLAYER1_WIN": "Victoire joueur 1",
       "PLAYER2_WIN": "Victoire joueur 2",
@@ -230,6 +233,7 @@
     "points": "points",
     "log": "Journal de combat",
     "vs": "VS",
+    "unavailable": "Le module de combat n'est pas disponible pour le moment.",
     "categories": {
       "ATTACK": "Attaque",
       "DEFEND": "Défense",
