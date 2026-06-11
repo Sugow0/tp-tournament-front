@@ -8,49 +8,60 @@ vi.mock("react-i18next", () => ({
 }));
 
 const mocks = vi.hoisted(() => ({
-  isAuthenticated: vi.fn(),
   clearSession: vi.fn(),
+  useSession: vi.fn(),
 }));
 
 vi.mock("~/lib/auth", () => ({
-  isAuthenticated: mocks.isAuthenticated,
   clearSession: mocks.clearSession,
 }));
 
+vi.mock("~/hooks/useSession", () => ({
+  useSession: mocks.useSession,
+}));
+
+function loggedOut() {
+  mocks.useSession.mockReturnValue({ isAuthenticated: false, ready: true });
+}
+
+function loggedIn() {
+  mocks.useSession.mockReturnValue({ isAuthenticated: true, ready: true });
+}
+
 describe("NavbarSession", () => {
   beforeEach(() => {
-    mocks.isAuthenticated.mockReset();
     mocks.clearSession.mockReset();
+    mocks.useSession.mockReset();
   });
 
   it("shows a Connexion link to /login when logged out", () => {
-    mocks.isAuthenticated.mockReturnValue(false);
+    loggedOut();
     renderWithRouter(<NavbarSession />);
     const link = screen.getByRole("link", { name: "nav.login" });
     expect(link).toHaveAttribute("href", "/login");
   });
 
   it("does not show an avatar when logged out", () => {
-    mocks.isAuthenticated.mockReturnValue(false);
+    loggedOut();
     renderWithRouter(<NavbarSession />);
     expect(screen.queryByRole("button", { name: "auth.account" })).toBeNull();
   });
 
   it("shows an account button (avatar) when logged in", () => {
-    mocks.isAuthenticated.mockReturnValue(true);
+    loggedIn();
     renderWithRouter(<NavbarSession />);
     expect(screen.getByRole("button", { name: "auth.account" })).toBeInTheDocument();
   });
 
   it("reveals a Déconnexion button after opening the menu when logged in", () => {
-    mocks.isAuthenticated.mockReturnValue(true);
+    loggedIn();
     renderWithRouter(<NavbarSession />);
     fireEvent.click(screen.getByRole("button", { name: "auth.account" }));
     expect(screen.getByRole("button", { name: "auth.logout" })).toBeInTheDocument();
   });
 
   it("calls clearSession when the logout button is clicked", () => {
-    mocks.isAuthenticated.mockReturnValue(true);
+    loggedIn();
     renderWithRouter(<NavbarSession />);
     fireEvent.click(screen.getByRole("button", { name: "auth.account" }));
     fireEvent.click(screen.getByRole("button", { name: "auth.logout" }));
