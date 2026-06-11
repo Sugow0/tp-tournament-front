@@ -36,7 +36,7 @@ export default function TournamentsIndex() {
       <PageHeader title={t("tournament.title")} actions={<CreateTournamentForm />} />
       <div className="p-4 md:p-6">
         {actionData && "error" in actionData && (
-          <p className="text-[var(--color-crimson)] text-sm mb-4">{t(actionData.error)}</p>
+          <p className="text-[var(--color-battle)] text-sm mb-4">{t(actionData.error)}</p>
         )}
         {tournaments.length === 0 ? (
           <EmptyState

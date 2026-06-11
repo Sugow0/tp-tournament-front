@@ -39,7 +39,7 @@ export default function TournamentDetail() {
       <div className="px-4 md:px-6 pt-4">
         <TournamentStatusStepper status={tournament.status} />
       </div>
-      <nav className="px-4 md:px-6 mt-4 flex gap-1 border-b border-[var(--color-parchment-border)]">
+      <nav className="px-4 md:px-6 mt-4 flex gap-1 border-b border-[var(--color-border)]">
         {TABS.map((tab) => (
           <NavLink
             key={tab.to}
@@ -49,8 +49,8 @@ export default function TournamentDetail() {
               cn(
                 "px-4 py-2 text-sm font-ui rounded-t transition-colors",
                 isActive
-                  ? "border-b-2 border-[var(--color-crimson)] text-[var(--color-crimson)] font-semibold"
-                  : "text-[var(--color-brown-mid)] hover:text-[var(--color-ink)]"
+                  ? "border-b-2 border-[var(--color-battle)] text-[var(--color-battle)] font-semibold"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-bright)]"
               )
             }
           >
