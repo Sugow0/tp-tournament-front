@@ -13,29 +13,25 @@ interface Props {
 export function TournamentCard({ tournament }: Props) {
   const date = format(new Date(tournament.createdAt), "d MMM yyyy", { locale: fr });
 
-  // Mouse position relative to card center [-0.5, 0.5]
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Spring-smoothed 3D rotation
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [14, -14]), {
-    stiffness: 260,
-    damping: 28,
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), {
+    stiffness: 240,
+    damping: 26,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-14, 14]), {
-    stiffness: 260,
-    damping: 28,
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 240,
+    damping: 26,
   });
 
-  // Holographic glare that follows the cursor
   const glareX = useMotionValue("50%");
   const glareY = useMotionValue("50%");
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX} ${glareY}, rgba(255, 215, 0, 0.13) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 70%)`;
+  const glare = useMotionTemplate`radial-gradient(circle at ${glareX} ${glareY}, rgba(255, 200, 80, 0.11) 0%, rgba(255,255,255,0.03) 45%, transparent 70%)`;
 
-  // Subtle chromatic glow shift
-  const shadowX = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
-  const shadowY = useTransform(mouseY, [-0.5, 0.5], [-8, 8]);
-  const cardShadow = useMotionTemplate`0 ${shadowY}px 40px rgba(74, 108, 247, 0.2), ${shadowX}px 0px 30px rgba(240, 168, 50, 0.12), 0 24px 60px rgba(0,0,0,0.6)`;
+  const shadowX = useTransform(mouseX, [-0.5, 0.5], [-10, 10]);
+  const shadowY = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
+  const cardShadow = useMotionTemplate`${shadowX}px ${shadowY}px 40px rgba(240,168,50,0.1), 0 20px 60px rgba(0,0,0,0.7)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -56,56 +52,73 @@ export function TournamentCard({ tournament }: Props) {
 
   return (
     <motion.div
-      style={{
-        rotateX,
-        rotateY,
-        transformPerspective: 1100,
-        boxShadow: cardShadow,
-      }}
+      style={{ rotateX, rotateY, transformPerspective: 1000, boxShadow: cardShadow }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.04, z: 30 }}
-      transition={{ type: "spring", stiffness: 380, damping: 28 }}
-      className="cursor-pointer rounded-2xl"
+      whileHover={{ scale: 1.03, z: 25 }}
+      transition={{ type: "spring", stiffness: 360, damping: 26 }}
+      className="cursor-pointer rounded-xl"
     >
       <Link to={`/tournaments/${tournament.id}`} className="block">
-        <div className="cr-card relative bg-gradient-to-br from-[var(--color-arena-surface)] via-[var(--color-arena-mid)] to-[var(--color-arena-bg)] rounded-2xl overflow-hidden border border-[var(--color-border)]">
-          {/* Gold top accent bar */}
-          <div className="h-[3px] bg-gradient-to-r from-[var(--color-gold-dark)]/60 via-[var(--color-gold-bright)] to-[var(--color-gold-dark)]/60" />
+        <div className="cr-card relative bg-gradient-to-b from-[var(--color-arena-surface)] to-[var(--color-arena-bg)] rounded-xl overflow-hidden border border-[var(--color-border)]">
+          {/* Gold top bar */}
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-80" />
 
-          {/* Content */}
-          <div className="px-5 pt-5 pb-4">
+          <div className="px-5 pt-5 pb-5">
+            {/* ─── D&D corner brackets ─── */}
+            <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-[var(--color-gold)]/45 pointer-events-none" />
+            <div className="absolute top-3 right-3 w-5 h-5 border-t border-r border-[var(--color-gold)]/45 pointer-events-none" />
+            <div className="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-[var(--color-gold)]/45 pointer-events-none" />
+            <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-[var(--color-gold)]/45 pointer-events-none" />
+
             {/* Header */}
             <div className="flex items-start justify-between gap-3 mb-4">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/25 flex items-center justify-center">
-                  <Trophy size={17} className="text-[var(--color-gold)]" />
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[var(--color-gold)]/8 border border-[var(--color-gold)]/20 flex items-center justify-center">
+                  <Trophy size={16} className="text-[var(--color-gold)]" />
                 </div>
-                <h2 className="font-heading text-lg text-[var(--color-text-bright)] leading-tight truncate">
+                <h2
+                  className="text-[0.95rem] text-[var(--color-text-bright)] leading-snug truncate"
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontWeight: 600,
+                    letterSpacing: "0.02em",
+                  }}
+                >
                   {tournament.name}
                 </h2>
               </div>
               <TournamentStatusBadge status={tournament.status} />
             </div>
 
+            {/* Ornamental separator */}
+            <div className="dnd-divider mb-4">
+              <svg
+                width="8"
+                height="8"
+                viewBox="0 0 8 8"
+                className="flex-shrink-0 fill-[var(--color-gold)]/40"
+                aria-hidden="true"
+              >
+                <path d="M4 0L5 3H8L5.5 5L6.5 8L4 6L1.5 8L2.5 5L0 3H3Z" />
+              </svg>
+            </div>
+
             {/* Footer */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs font-ui">
+              <div className="flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs font-ui tracking-wide">
                 <Calendar size={11} className="flex-shrink-0" />
-                <span>{date}</span>
+                <span className="uppercase">{date}</span>
               </div>
-              <ChevronRight size={14} className="text-[var(--color-text-muted)]" />
+              <ChevronRight size={13} className="text-[var(--color-text-muted)]/60" />
             </div>
           </div>
 
           {/* Holographic glare overlay */}
           <motion.div
-            className="absolute inset-0 pointer-events-none rounded-2xl"
+            className="absolute inset-0 pointer-events-none rounded-xl"
             style={{ background: glare }}
           />
-
-          {/* Bottom edge shimmer */}
-          <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
         </div>
       </Link>
     </motion.div>

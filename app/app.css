@@ -2,7 +2,8 @@
 
 @theme {
   /* ─── Typography ─── */
-  --font-heading: "Lilita One", cursive;
+  --font-display: "Cinzel Decorative", serif;
+  --font-heading: "Cinzel", serif;
   --font-body: "Nunito", sans-serif;
   --font-ui: "Nunito", sans-serif;
   --font-sans: "Nunito", sans-serif;
@@ -140,7 +141,7 @@ textarea,
   animation: glow-gold 2.4s ease-in-out infinite;
 }
 
-/* ─── CR card — gold top accent line ─── */
+/* ─── CR card — gradient border via mask ─── */
 .cr-card {
   position: relative;
   overflow: hidden;
@@ -154,9 +155,9 @@ textarea,
   padding: 1.5px;
   background: linear-gradient(
     160deg,
-    rgba(240, 168, 50, 0.6) 0%,
-    transparent 50%,
-    rgba(74, 108, 247, 0.3) 100%
+    rgba(240, 168, 50, 0.7) 0%,
+    transparent 45%,
+    rgba(74, 108, 247, 0.4) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -164,4 +165,42 @@ textarea,
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* ─── Ornamental D&D divider ─── */
+.dnd-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dnd-divider::before,
+.dnd-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240, 168, 50, 0.45), transparent);
+}
+
+/* ─── Display font utility ─── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ─── Ember flicker ─── */
+@keyframes ember-flicker {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ─── Arcane text glow ─── */
+.text-arcane {
+  text-shadow:
+    0 0 20px rgba(240, 168, 50, 0.5),
+    0 0 60px rgba(240, 168, 50, 0.2);
 }

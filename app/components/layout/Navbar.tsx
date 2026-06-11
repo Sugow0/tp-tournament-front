@@ -44,7 +44,10 @@ export function Navbar() {
               className="text-[var(--color-gold)] drop-shadow-[0_0_10px_rgba(240,168,50,0.6)]"
             />
           </motion.div>
-          <span className="font-heading text-[1.15rem] text-[var(--color-gold)] tracking-widest uppercase">
+          <span
+            className="text-[var(--color-gold)] tracking-widest uppercase text-arcane"
+            style={{ fontFamily: "var(--font-display)", fontSize: "0.9rem", fontWeight: 700 }}
+          >
             {t("nav.brand")}
           </span>
         </Link>

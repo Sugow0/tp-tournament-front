@@ -1,54 +1,173 @@
 /// <reference types="@react-three/fiber" />
-import { Float, Stars } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import type * as THREE from "three";
 
-const GEMS = [
-  { pos: [-22, 7, -10] as [number, number, number], color: "#f0a832", size: 0.65, speed: 0.35 },
-  { pos: [25, -5, -14] as [number, number, number], color: "#4a6cf7", size: 0.95, speed: 0.22 },
-  { pos: [-10, -11, -8] as [number, number, number], color: "#ffd700", size: 0.38, speed: 0.62 },
-  { pos: [18, 11, -12] as [number, number, number], color: "#4a6cf7", size: 0.55, speed: 0.38 },
-  { pos: [8, -7, -6] as [number, number, number], color: "#f0a832", size: 0.28, speed: 0.85 },
-  { pos: [-19, 3, -16] as [number, number, number], color: "#4a6cf7", size: 1.1, speed: 0.18 },
-  { pos: [30, 4, -20] as [number, number, number], color: "#f0a832", size: 0.82, speed: 0.14 },
-  { pos: [-27, -8, -18] as [number, number, number], color: "#ffd700", size: 0.47, speed: 0.52 },
-  { pos: [12, 16, -15] as [number, number, number], color: "#4a6cf7", size: 0.68, speed: 0.28 },
-  { pos: [-14, 9, -9] as [number, number, number], color: "#f0a832", size: 0.32, speed: 0.74 },
-  { pos: [20, -13, -11] as [number, number, number], color: "#a855f7", size: 0.5, speed: 0.41 },
-  { pos: [-32, 1, -22] as [number, number, number], color: "#4a6cf7", size: 1.3, speed: 0.11 },
-] as const;
+/* ─── Embers: slow orange particles drifting upward ─── */
+const EMBER_COUNT = 320;
 
-interface GemProps {
-  pos: [number, number, number];
-  color: string;
-  size: number;
-  speed: number;
-}
+function EmberParticles() {
+  const ref = useRef<THREE.Points>(null);
 
-function Gem({ pos, color, size, speed }: GemProps) {
-  const ref = useRef<THREE.Mesh>(null);
+  const { positions, speeds, phases } = useMemo(() => {
+    const positions = new Float32Array(EMBER_COUNT * 3);
+    const speeds = new Float32Array(EMBER_COUNT);
+    const phases = new Float32Array(EMBER_COUNT);
+    for (let i = 0; i < EMBER_COUNT; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 100;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      positions[i * 3 + 2] = -8 - Math.random() * 18;
+      speeds[i] = 0.35 + Math.random() * 0.85;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+    return { positions, speeds, phases };
+  }, []);
 
   useFrame((_, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x += delta * speed * 0.4;
-      ref.current.rotation.y += delta * speed * 0.7;
-      ref.current.rotation.z += delta * speed * 0.2;
+    if (!ref.current) return;
+    const attr = ref.current.geometry.attributes.position;
+    const arr = attr.array as Float32Array;
+    for (let i = 0; i < EMBER_COUNT; i++) {
+      arr[i * 3 + 1] += delta * speeds[i] * 2.0;
+      arr[i * 3] += Math.sin(arr[i * 3 + 1] * 0.28 + phases[i]) * delta * 0.22;
+      if (arr[i * 3 + 1] > 32) {
+        arr[i * 3 + 1] = -32;
+        arr[i * 3] = (Math.random() - 0.5) * 100;
+      }
     }
+    attr.needsUpdate = true;
   });
 
   return (
-    <Float speed={1.2 + speed} rotationIntensity={0.4} floatIntensity={0.8}>
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute args={[positions, 3]} attach="attributes-position" />
+      </bufferGeometry>
+      <pointsMaterial
+        color="#e07820"
+        size={0.09}
+        transparent
+        opacity={0.6}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+}
+
+/* ─── Gold sparks: smaller, faster ─── */
+const SPARK_COUNT = 150;
+
+function GoldSparks() {
+  const ref = useRef<THREE.Points>(null);
+
+  const { positions, speeds, phases } = useMemo(() => {
+    const positions = new Float32Array(SPARK_COUNT * 3);
+    const speeds = new Float32Array(SPARK_COUNT);
+    const phases = new Float32Array(SPARK_COUNT);
+    for (let i = 0; i < SPARK_COUNT; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 70;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      positions[i * 3 + 2] = -4 - Math.random() * 12;
+      speeds[i] = 0.9 + Math.random() * 1.6;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+    return { positions, speeds, phases };
+  }, []);
+
+  useFrame((_, delta) => {
+    if (!ref.current) return;
+    const attr = ref.current.geometry.attributes.position;
+    const arr = attr.array as Float32Array;
+    for (let i = 0; i < SPARK_COUNT; i++) {
+      arr[i * 3 + 1] += delta * speeds[i] * 2.8;
+      arr[i * 3] += Math.sin(arr[i * 3 + 1] * 0.5 + phases[i]) * delta * 0.35;
+      if (arr[i * 3 + 1] > 32) {
+        arr[i * 3 + 1] = -32;
+        arr[i * 3] = (Math.random() - 0.5) * 70;
+      }
+    }
+    attr.needsUpdate = true;
+  });
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute args={[positions, 3]} attach="attributes-position" />
+      </bufferGeometry>
+      <pointsMaterial
+        color="#ffd700"
+        size={0.045}
+        transparent
+        opacity={0.75}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+}
+
+/* ─── Arcane orbs: wireframe icosahedra slowly tumbling ─── */
+const ORBS = [
+  {
+    pos: [-24, 7, -14] as [number, number, number],
+    color: "#f0a832",
+    size: 4.0,
+    rx: 0.07,
+    ry: 0.12,
+  },
+  {
+    pos: [26, -5, -20] as [number, number, number],
+    color: "#4a6cf7",
+    size: 5.5,
+    rx: 0.05,
+    ry: 0.09,
+  },
+  {
+    pos: [-15, -11, -16] as [number, number, number],
+    color: "#7c3aed",
+    size: 3.2,
+    rx: 0.09,
+    ry: 0.06,
+  },
+  {
+    pos: [18, 13, -18] as [number, number, number],
+    color: "#f0a832",
+    size: 2.6,
+    rx: 0.11,
+    ry: 0.08,
+  },
+  {
+    pos: [35, 2, -24] as [number, number, number],
+    color: "#4a6cf7",
+    size: 6.0,
+    rx: 0.04,
+    ry: 0.07,
+  },
+] as const;
+
+interface OrbProps {
+  pos: [number, number, number];
+  color: string;
+  size: number;
+  rx: number;
+  ry: number;
+}
+
+function ArcaneOrb({ pos, color, size, rx, ry }: OrbProps) {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame((_, delta) => {
+    if (!ref.current) return;
+    ref.current.rotation.x += delta * rx;
+    ref.current.rotation.y += delta * ry;
+    ref.current.rotation.z += delta * 0.03;
+  });
+  return (
+    <Float speed={0.4} rotationIntensity={0.2} floatIntensity={2.5}>
       <mesh ref={ref} position={pos} scale={size}>
-        <octahedronGeometry args={[1, 0]} />
-        <meshPhongMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.35}
-          shininess={120}
-          transparent
-          opacity={0.5}
-        />
+        <icosahedronGeometry args={[1, 1]} />
+        <meshBasicMaterial color={color} wireframe transparent opacity={0.14} />
       </mesh>
     </Float>
   );
@@ -68,16 +187,18 @@ export function ArenaScene() {
         pointerEvents: "none",
       }}
     >
-      <ambientLight intensity={0.12} />
-      <pointLight position={[15, 10, 8]} intensity={0.8} color="#4a6cf7" />
-      <pointLight position={[-15, -8, 5]} intensity={0.6} color="#f0a832" />
-      <pointLight position={[0, 20, -5]} intensity={0.4} color="#a855f7" />
+      <fog attach="fog" args={["#0d0a1e", 35, 90]} />
+      <ambientLight intensity={0.06} />
+      <pointLight position={[-18, -8, 6]} intensity={1.5} color="#c85a00" decay={2} />
+      <pointLight position={[18, 16, 8]} intensity={0.9} color="#3a5fd4" decay={2} />
+      <pointLight position={[0, 5, -2]} intensity={0.5} color="#5b21b6" decay={3} />
 
-      <Stars radius={120} depth={60} count={1800} factor={2.5} saturation={0.4} fade speed={0.3} />
+      <EmberParticles />
+      <GoldSparks />
 
-      {GEMS.map((gem, i) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: static array
-        <Gem key={i} {...gem} />
+      {ORBS.map((orb, i) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: static constant array
+        <ArcaneOrb key={i} {...orb} />
       ))}
     </Canvas>
   );
