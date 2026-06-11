@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { isCombatOver, MAX_TURNS } from "~/lib/combat-rules";
 import type { ChampionClass, Combat, Skill } from "~/types/combat";
-import { ActionPanel } from "./ActionPanel";
-import { ChampionPanel } from "./ChampionPanel";
+import { CombatBoard } from "./CombatBoard";
 import { CombatLog } from "./CombatLog";
 import { OutcomeBanner } from "./OutcomeBanner";
 
@@ -17,9 +16,9 @@ export function CombatArena({ combat, class1Skills, class2Skills, classes = [] }
   const { t } = useTranslation();
   const over = isCombatOver(combat);
   const turn = Math.min(combat.turn, MAX_TURNS);
-
-  const className = (classId: number) =>
-    classes.find((c) => c.id === classId)?.name ?? `#${classId}`;
+  // `classes` is kept for prop compatibility with both call sites; the
+  // semi-3D board derives class skills from class1Skills/class2Skills.
+  void classes;
 
   return (
     <div className="flex flex-col gap-6">
@@ -27,24 +26,15 @@ export function CombatArena({ combat, class1Skills, class2Skills, classes = [] }
         {t("combat.turn")} {turn} / {MAX_TURNS}
       </div>
 
-      <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-[1fr_auto_1fr]">
-        <ChampionPanel
-          champion={combat.champion1}
-          className={className(combat.champion1.classId)}
-        />
-        <div className="flex items-center justify-center font-display text-2xl font-bold uppercase text-[var(--color-battle)]">
-          {t("combat.vs")}
-        </div>
-        <ChampionPanel
-          champion={combat.champion2}
-          className={className(combat.champion2.classId)}
-        />
-      </div>
-
       {over ? (
         <OutcomeBanner combat={combat} />
       ) : (
-        <ActionPanel combat={combat} class1Skills={class1Skills} class2Skills={class2Skills} />
+        <CombatBoard
+          combat={combat}
+          class1Skills={class1Skills}
+          class2Skills={class2Skills}
+          combatId={combat.id}
+        />
       )}
 
       <CombatLog log={combat.log} />
