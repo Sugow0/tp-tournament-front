@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import type { ActionFunctionArgs } from "react-router";
 import { useActionData, useNavigate } from "react-router";
 import { AuthForm } from "~/components/auth/AuthForm";
-import { PageHeader } from "~/components/layout/PageHeader";
 import { setSession } from "~/lib/auth";
 import { ApiError } from "~/lib/http";
 import { register } from "~/services/auth.service";
@@ -34,14 +33,13 @@ export default function Register() {
   }, [actionData, navigate]);
 
   return (
-    <>
-      <PageHeader title={t("auth.register")} />
-      <div className="px-4 sm:px-8 lg:px-14 xl:px-20 2xl:px-28 py-8 md:py-12">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-6 p-6">
+      <div className="cr-card w-full max-w-sm rounded-lg border border-[var(--color-border)] bg-[var(--color-arena-mid)]/80 p-8">
         {actionData && "error" in actionData && (
-          <p className="text-[var(--color-battle)] text-sm mb-6 font-ui">{t(actionData.error)}</p>
+          <p className="mb-6 font-ui text-sm text-[var(--color-battle)]">{t(actionData.error)}</p>
         )}
         <AuthForm mode="register" />
       </div>
-    </>
+    </div>
   );
 }
