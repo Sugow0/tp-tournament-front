@@ -8,7 +8,11 @@
     "ranking": "Classement",
     "cosmetics": "Cosmétiques",
     "seasons": "Saisons",
-    "shop": "Boutique"
+    "shop": "Boutique",
+    "combat": "Combat",
+    "login": "Connexion",
+    "account": "Mon compte",
+    "logout": "Déconnexion"
   },
   "tournament": {
     "title": "Tournois",
@@ -134,7 +138,11 @@
     "password": "Mot de passe",
     "submit": "Valider",
     "haveAccount": "Vous avez déjà un compte ?",
-    "noAccount": "Vous n'avez pas de compte ?"
+    "noAccount": "Vous n'avez pas de compte ?",
+    "welcome": "Bienvenue dans l'Arène",
+    "account": "Mon compte",
+    "logout": "Déconnexion",
+    "terms": "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité."
   },
   "errors": {
     "loginFailed": "La connexion a échoué. Vérifiez vos identifiants.",

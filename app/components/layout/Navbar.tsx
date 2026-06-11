@@ -3,6 +3,7 @@ import { Crown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
+import { NavbarSession } from "~/components/layout/NavbarSession";
 import { cn } from "~/lib/utils";
 
 export function Navbar() {
@@ -10,6 +11,7 @@ export function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const isTournaments = location.pathname.startsWith("/tournaments");
+  const isCombat = location.pathname.startsWith("/combats");
   const isSeasons = location.pathname.startsWith("/seasons");
   const isSkins = location.pathname.startsWith("/skins");
 
@@ -57,8 +59,12 @@ export function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex ml-auto items-center gap-1">
           <NavItem to="/tournaments" active={isTournaments} label={t("nav.tournaments")} />
+          <NavItem to="/combats" active={isCombat} label={t("nav.combat")} />
           <NavItem to="/seasons" active={isSeasons} label={t("nav.seasons")} />
           <NavItem to="/skins" active={isSkins} label={t("nav.shop")} />
+          <div className="ml-3 pl-3 border-l border-[var(--color-border)]">
+            <NavbarSession />
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -95,6 +101,12 @@ export function Navbar() {
             onClick={() => setOpen(false)}
           />
           <NavItem
+            to="/combats"
+            active={isCombat}
+            label={t("nav.combat")}
+            onClick={() => setOpen(false)}
+          />
+          <NavItem
             to="/seasons"
             active={isSeasons}
             label={t("nav.seasons")}
@@ -106,6 +118,9 @@ export function Navbar() {
             label={t("nav.shop")}
             onClick={() => setOpen(false)}
           />
+          <div className="mt-2 pt-2 border-t border-[var(--color-border)]">
+            <NavbarSession mobile onAction={() => setOpen(false)} />
+          </div>
         </div>
       </motion.div>
     </motion.nav>
