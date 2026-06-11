@@ -11,7 +11,7 @@ vi.mock("react-i18next", () => ({
 const rows: PlayerScore[] = [
   { playerId: 1, playerName: "Arthur", finalScore: 12, isDisqualified: false },
   { playerId: 2, playerName: "Lancelot", finalScore: 8, isDisqualified: false },
-  { playerId: 3, playerName: "Mordred", finalScore: 3, isDisqualified: true },
+  { playerId: 3, playerName: "Mordred", finalScore: 5, isDisqualified: true },
 ];
 
 describe("RankingTable", () => {
@@ -26,7 +26,7 @@ describe("RankingTable", () => {
     renderWithRouter(<RankingTable rows={rows} />);
     expect(screen.getByText("12")).toBeInTheDocument();
     expect(screen.getByText("8")).toBeInTheDocument();
-    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
   });
 
   it("renders the rank for each player", () => {
