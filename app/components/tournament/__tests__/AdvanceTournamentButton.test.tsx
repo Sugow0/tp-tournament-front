@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { renderWithRouter } from "~/test/utils/render-with-router";
 import { AdvanceTournamentButton } from "~/components/tournament/AdvanceTournamentButton";
+import { renderWithRouter } from "~/test/utils/render-with-router";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
