@@ -60,7 +60,11 @@ describe("tournaments.$id.duels loader", () => {
     mockListDuels.mockResolvedValue([fakeDuel]);
     mockListPlayers.mockResolvedValue(fakePlayers);
     const { loader } = await import("~/routes/tournaments.$id.duels");
-    const data = await loader({ params: { id: "42" }, request: new Request("http://localhost"), context: {} });
+    const data = await loader({
+      params: { id: "42" },
+      request: new Request("http://localhost"),
+      context: {},
+    });
     expect(data.duels).toEqual([fakeDuel]);
     expect(data.players).toEqual(fakePlayers);
   });
@@ -73,7 +77,12 @@ describe("tournaments.$id.duels action", () => {
     mockCreateDuel.mockResolvedValue(fakeDuel);
     const { action } = await import("~/routes/tournaments.$id.duels");
     await action({
-      request: makePostRequest({ intent: "createDuel", player1Id: "1", player2Id: "2", duelOrder: "1" }),
+      request: makePostRequest({
+        intent: "createDuel",
+        player1Id: "1",
+        player2Id: "2",
+        duelOrder: "1",
+      }),
       params: { id: "42" },
       context: {},
     });
