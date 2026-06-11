@@ -20,7 +20,7 @@ export function ActionPanel({ combat, class1Skills, class2Skills }: Props) {
   if (isCombatOver(combat)) return null;
 
   // Slot 1 validates first, then slot 2.
-  const activeSlot: 1 | 2 = combat.champion1.hasSubmitted ? 2 : 1;
+  const activeSlot: 1 | 2 = combat.champion1.hasSubmittedAction ? 2 : 1;
   const activeChampion = activeSlot === 1 ? combat.champion1 : combat.champion2;
   const skills = activeSlot === 1 ? class1Skills : class2Skills;
 

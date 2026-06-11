@@ -14,7 +14,7 @@ const champion: CombatantState = {
   level: 3,
   maxHp: 130,
   currentHp: 65,
-  hasSubmitted: false,
+  hasSubmittedAction: false,
   effects: [],
 };
 
@@ -30,8 +30,10 @@ describe("ChampionPanel", () => {
     expect(screen.getByText(/130/)).toBeInTheDocument();
   });
 
-  it("shows the submitted indicator when hasSubmitted is true", () => {
-    render(<ChampionPanel champion={{ ...champion, hasSubmitted: true }} className="Guerrier" />);
+  it("shows the submitted indicator when hasSubmittedAction is true", () => {
+    render(
+      <ChampionPanel champion={{ ...champion, hasSubmittedAction: true }} className="Guerrier" />
+    );
     expect(screen.getByText("combat.validate")).toBeInTheDocument();
   });
 });

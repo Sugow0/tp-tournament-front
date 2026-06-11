@@ -10,7 +10,7 @@ function makeCombatant(overrides: Partial<CombatantState> = {}): CombatantState 
     level: 1,
     maxHp: 110,
     currentHp: 110,
-    hasSubmitted: false,
+    hasSubmittedAction: false,
     effects: [],
     ...overrides,
   };

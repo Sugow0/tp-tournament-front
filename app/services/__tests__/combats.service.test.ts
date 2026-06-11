@@ -19,7 +19,7 @@ const champion1: CombatantState = {
   level: 1,
   maxHp: 110,
   currentHp: 110,
-  hasSubmitted: false,
+  hasSubmittedAction: false,
   effects: [],
 };
 
