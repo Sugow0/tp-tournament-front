@@ -47,26 +47,29 @@
   --color-border: rgba(201, 164, 75, 0.22);
   --color-border-strong: rgba(201, 164, 75, 0.5);
 
-  /* ─── shadcn semantic tokens ─── */
-  --background: var(--color-arena-bg);
-  --foreground: var(--color-text);
-  --card: var(--color-arena-mid);
-  --card-foreground: var(--color-text);
-  --popover: var(--color-arena-surface);
-  --popover-foreground: var(--color-text);
-  --primary: var(--color-royal);
-  --primary-foreground: #fbf3e2;
-  --secondary: var(--color-arena-surface);
-  --secondary-foreground: var(--color-text);
-  --muted: var(--color-arena-elevated);
-  --muted-foreground: var(--color-text-muted);
-  --accent: var(--color-gold);
-  --accent-foreground: var(--color-arena-bg);
-  --destructive: var(--color-battle);
-  --destructive-foreground: #fbf3e2;
-  --border: var(--color-border);
-  --input: var(--color-arena-surface);
-  --ring: var(--color-gold);
+  /* ─── shadcn semantic tokens ───
+     Registered in the --color-* namespace so Tailwind v4 actually generates
+     the bg-/text-/border-/ring- utilities (bg-primary, border-input, …).
+     Without the --color- prefix these utilities are silently dropped, which
+     left default buttons transparent (they looked like links). */
+  --color-background: var(--color-arena-bg);
+  --color-foreground: var(--color-text);
+  --color-card: var(--color-arena-mid);
+  --color-card-foreground: var(--color-text);
+  --color-popover: var(--color-arena-surface);
+  --color-popover-foreground: var(--color-text);
+  --color-primary: var(--color-royal);
+  --color-primary-foreground: #fbf3e2;
+  --color-secondary: var(--color-arena-surface);
+  --color-secondary-foreground: var(--color-text);
+  --color-muted: var(--color-arena-elevated);
+  --color-muted-foreground: var(--color-text-muted);
+  --color-accent: var(--color-gold);
+  --color-accent-foreground: var(--color-arena-bg);
+  --color-destructive: var(--color-battle);
+  --color-destructive-foreground: #fbf3e2;
+  --color-input: var(--color-arena-surface);
+  --color-ring: var(--color-gold);
   --radius: 0.625rem;
 }
 
