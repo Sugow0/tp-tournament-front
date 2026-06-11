@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   clearSession,
   getAccessToken,
@@ -44,5 +44,25 @@ describe("auth token store", () => {
     expect(getRefreshToken()).toBeNull();
     expect(isAuthenticated()).toBe(false);
     expect(localStorage.getItem("accessToken")).toBeNull();
+  });
+
+  describe("auth-change event", () => {
+    afterEach(() => vi.restoreAllMocks());
+
+    it("setSession dispatches a tournament:auth-change event", () => {
+      const listener = vi.fn();
+      window.addEventListener("tournament:auth-change", listener);
+      setSession(fakeAuth);
+      window.removeEventListener("tournament:auth-change", listener);
+      expect(listener).toHaveBeenCalledTimes(1);
+    });
+
+    it("clearSession dispatches a tournament:auth-change event", () => {
+      const listener = vi.fn();
+      window.addEventListener("tournament:auth-change", listener);
+      clearSession();
+      window.removeEventListener("tournament:auth-change", listener);
+      expect(listener).toHaveBeenCalledTimes(1);
+    });
   });
 });
