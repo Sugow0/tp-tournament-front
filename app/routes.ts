@@ -7,6 +7,7 @@ export default [
   route("tournaments", "routes/tournaments._index.tsx"),
   route("skins", "routes/skins._index.tsx"),
   route("objectives/:seasonId", "routes/objectives.$seasonId.tsx"),
+  route("battlepass/:seasonId", "routes/battlepass.$seasonId.tsx"),
   route("tournaments/:id", "routes/tournaments.$id.tsx", [
     index("routes/tournaments.$id._index.tsx"),
     route("players", "routes/tournaments.$id.players.tsx"),

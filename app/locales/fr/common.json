@@ -160,6 +160,21 @@
       "description": "Créez votre premier objectif pour cette saison."
     }
   },
+  "battlepass": {
+    "title": "Passe de combat",
+    "tier": "Palier",
+    "xp": "XP",
+    "premium": "Premium",
+    "free": "Gratuit",
+    "rewardType": "Type de récompense",
+    "rewardData": "Données de récompense",
+    "addTier": "Ajouter un palier",
+    "progress": "Progression",
+    "empty": {
+      "title": "Aucune passe de combat",
+      "description": "Aucune passe de combat n'est disponible pour cette saison."
+    }
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "save": "Enregistrer",
